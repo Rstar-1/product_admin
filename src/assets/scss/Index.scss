@@ -1,0 +1,769 @@
+/* ======================= Start-Color ======================= */
+:root {
+  --primary: linear-gradient(
+    270deg,
+    rgba(115, 103, 240, 0.7) 0%,
+    #7367f0 100%
+  ) !important;
+  --primary2: #7367f0 !important;
+  --secondary: linear-gradient(270deg, #e5b1b3 0%, #ff4c51 100%) !important;
+  --secondary2: #ff4c51 !important;
+  --tertiary: #f8f7fb !important;
+  --forth: #0f172a !important;
+  --success: #4bb543 !important;
+  --warning: #ff5722 !important;
+  --danger: red !important;
+  --info: #2196f3 !important;
+  --white: #fff !important;
+  --card: #fff !important;
+  --dark: #000 !important;
+  --gray: #808390 !important;
+}
+.dark-mode {
+  --primary: #74c2a8 !important;
+  --secondary: #9a9bcc !important;
+  --tertiary: #171718 !important;
+  --forth: #fff !important;
+  --success: #4bb543 !important;
+  --warning: #ff5722 !important;
+  --danger: red !important;
+  --info: #2196f3 !important;
+  --white: #293643 !important;
+  --card: #1e2b34 !important;
+  --dark: #ececec !important;
+  --gray: #fff !important;
+}
+/* ======================= End-Color ======================= */
+
+/* ======================= Start-Bg-Color ======================= */
+.bgprimary {
+  background: var(--primary);
+}
+.bgsecondary {
+  background: var(--secondary);
+}
+.bgprimary2 {
+  background: var(--primary2);
+}
+.bgsecondary2 {
+  background: var(--secondary2);
+}
+.bgtertiary {
+  background: var(--tertiary);
+}
+.bgforth {
+  background: var(--forth);
+}
+.bgsuccess {
+  background: var(--success);
+}
+.bgwarning {
+  background: var(--warning);
+}
+.bgdanger {
+  background: var(--danger);
+}
+.bginfo {
+  background: var(--info);
+}
+.bgwhite {
+  background: var(--white);
+}
+.bggray {
+  background: var(--gray);
+}
+.bgcard {
+  background: var(--card);
+}
+.bgdark {
+  background: var(--dark);
+}
+.bg-light-primary {
+  background: #e9e7fd !important;
+}
+.bg-light-secondary {
+  background: #faf1f1 !important;
+}
+.bg-light-success {
+  background: #4bb5432e !important;
+}
+.bg-light-warning {
+  background: #faf0ed !important;
+}
+.bg-light-danger {
+  background: rgba(255, 0, 0, 0.144) !important;
+}
+.bg-ec {
+  background-color: #ececec !important;
+}
+.bg-fa {
+  background-color: #fafafa !important;
+}
+.bg-efefef {
+  background-color: #efefef !important;
+}
+.bg-f4f5f6 {
+  background: #f4f5f6 !important;
+}
+.bg-glass {
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.2px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+.bg-glass2 {
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(1.7px);
+}
+.liner-color {
+  background: linear-gradient(45deg, #e66465, #9198e5) !important;
+}
+.liner-color2 {
+  background: linear-gradient(45deg, #3f87a6, #f69d3c) !important;
+}
+.liner-color3 {
+  background: linear-gradient(45deg, #0045c7, #ff2c7d) !important;
+}
+/* ======================= End-Bg-Color ======================= */
+
+/* ======================= Start-Text-Color ======================= */
+.textprimary {
+  color: var(--primary2);
+}
+.textsecondary {
+  color: var(--secondary2);
+}
+.textcard {
+  color: var(--card);
+}
+.texttertiary {
+  color: var(--tertiary);
+}
+.textforth {
+  color: var(--forth);
+}
+.textsuccess {
+  color: var(--success);
+}
+.textwarning {
+  color: var(--warning);
+}
+.textdanger {
+  color: var(--danger);
+}
+.textinfo {
+  color: var(--info);
+}
+.textwhite {
+  color: var(--white);
+}
+.textgray {
+  color: var(--gray);
+}
+.textdark {
+  color: var(--dark);
+}
+/* ======================= End-Text-Color ======================= */
+
+/* ======================= Start-Border ======================= */
+.border-primary {
+  border: 1px solid var(--primary);
+}
+.border-card {
+  border: 1px solid var(--card);
+}
+.border-secondary {
+  border: 1px solid var(--secondary);
+}
+.border-tertiary {
+  border: 1px solid var(--tertiary);
+}
+.border-forth {
+  border: 1px solid var(--forth);
+}
+.border-success {
+  border: 1px solid var(--success);
+}
+.border-warning {
+  border: 1px solid var(--warning);
+}
+.border-danger {
+  border: 1px solid var(--danger);
+}
+.border-info {
+  border: 1px solid var(--info);
+}
+.border-white {
+  border: 1px solid var(--white);
+}
+.border-gray {
+  border: 1px solid var(--gray);
+}
+.border-dark {
+  border: 1px solid var(--dark);
+}
+/* ======================= End-Border ======================= */
+
+/* ======================= Start-Font-Family ======================= */
+@font-face {
+  font-family: "poppins-semibold";
+  src: local("poppins-semibold"),
+    url("../fonts/Poppins-SemiBold.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "poppins-regular";
+  src: local("poppins-regular"),
+    url("../fonts/Poppins-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+p,
+label,
+small,
+input,
+textarea,
+select,
+button {
+  font-family: "poppins-regular" !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+li,
+a {
+  font-family: "poppins-semibold" !important;
+}
+p {
+  letter-spacing: 1px;
+  line-height: 24px !important;
+  @media (max-width: 640px) {
+    line-height: 20px !important;
+  }
+}
+input,
+::placeholder {
+  @media (max-width: 640px) {
+    font-size: 13px !important;
+  }
+}
+.css-b62m3t-container,
+text.CircularProgressbar-text {
+  font-family: "poppins-regular" !important;
+  font-size: 14px !important;
+}
+/* ======================= End-Font-Family ======================= */
+
+/* ======================= Start-scrollbar ======================= */
+::-webkit-scrollbar {
+  width: 0px;
+}
+/* ======================= End-scrollbar ======================= */
+
+/* ======================= Start-Maincss ======================= */
+
+// Font
+body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  word-wrap: break-word !important;
+}
+a {
+  text-decoration: none !important;
+}
+p {
+  margin: 0px;
+  padding: 0px;
+}
+// Font
+
+// List Style
+.list-none {
+  list-style: none !important;
+}
+.decimal {
+  list-style: decimal !important;
+}
+.disc {
+  list-style: disc !important;
+}
+// List Style
+
+// Border
+.border-0 {
+  border: none !important;
+}
+.border-ec {
+  border: 1px solid #ececec !important;
+}
+.bordb {
+  border-bottom: 1px solid #f4f5f6 !important;
+}
+.bordh {
+  border-top: 1px solid #f4f5f6 !important;
+}
+// Border
+
+// Box Shadow
+.d-shadow {
+  box-shadow: 0 2px 12px 0 #0000001a !important;
+}
+.b-shadow {
+  box-shadow: 0px 9px 50px #1211271f !important;
+}
+// Box Shadow
+
+// Common Part
+.cursor-pointer {
+  cursor: pointer !important;
+}
+.z-999 {
+  z-index: 9999 !important;
+}
+.h-100 {
+  height: 100vh !important;
+}
+.center-absolute {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+.dot {
+  width: 12px !important;
+  height: 12px !important;
+  @media (max-width: 912px) and (min-width: 641px) {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  @media (max-width: 640px) {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+.leading {
+  line-height: 15px !important;
+}
+// Common Part
+
+.error-h {
+  height: 90vh !important;
+  @media (max-width: 640px) {
+    height: 60vh !important;
+  }
+}
+
+/* ======================= End-Maincss ======================= */
+
+/* ======================= Start-Pagination ======================= */
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.pagination li {
+  background: #ececec;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  color: #111;
+  cursor: pointer;
+}
+.pagination .selected {
+  background: var(--primary);
+  color: var(--white);
+}
+/* ======================= End-Pagination ======================= */
+
+/* ======================= Start-loader ======================= */
+.loader {
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top: 2px solid var(--tertiary);
+  border-bottom: 2px solid var(--tertiary);
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+.loader2 {
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top: 2px solid var(--tertiary);
+  border-bottom: 2px solid var(--tertiary);
+  width: 70px;
+  height: 70px;
+  animation: spins 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spins {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+/* ======================= End-loader ======================= */
+
+/* ======================= Start-Animatedcss ======================= */
+.tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.tab__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.tab input:checked ~ .tab__content {
+  max-height: 100%;
+}
+.tab__label::after {
+  width: 1em;
+  height: 100%;
+  text-align: center;
+  transform: rotate(90deg);
+  transition: all 0.3s;
+}
+.tab input:checked + .tab__label::after {
+  transform: rotate(270deg);
+}
+.bg-glass-nav {
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.2px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+.drawer .navhide {
+  position: absolute;
+  right: -50%;
+  width: 50% !important;
+  transition: all 0.3s ease-in 0s;
+}
+.drawer .navview {
+  position: absolute;
+  right: 0%;
+  width: 100% !important;
+  transition: all 0.3s ease-in 0s;
+}
+/* ======================= End-Animatedcss ======================= */
+
+/* ======================= Start-Button ======================= */
+.primarybtn {
+  background: transparent;
+  border: 1px solid var(--primary2);
+  color: var(--primary2);
+}
+.primarybtn:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+.secondarybtn {
+  background: transparent !important;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+}
+.secondarybtn:hover {
+  background: var(--secondary);
+  color: var(--white);
+}
+.whitebtn {
+  background: transparent !important;
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+.whitebtn:hover {
+  background: var(--white);
+  color: var(--primary);
+}
+/* ======================= End-Button ======================= */
+
+/* ======================= End-Admin ======================= */
+
+.w-side {
+  min-width: 17% !important;
+}
+.w-route {
+  width: 81.5% !important;
+  @media (max-width: 912px) and (min-width: 641px) {
+    width: 97% !important;
+    padding: 0px 8px;
+  }
+  @media (max-width: 640px) {
+    width: 94% !important;
+    padding: 0px 5px;
+  }
+}
+
+/* ======================= End-Admin ======================= */
+
+/* ======================= Start-Sidebar ======================= */
+
+.sidebar-logo {
+  width: 100px !important;
+  height: 100px !important;
+}
+.dot-dash {
+  width: 20px !important;
+  height: 20px !important;
+}
+.sidebar .activesidebar {
+  color: var(--gray);
+}
+.sidebar .active {
+  color: var(--white);
+  background: var(--primary);
+}
+
+/* ======================= End-Sidebar ======================= */
+
+/* ======================= Start-Header ======================= */
+
+.header-logo {
+  width: 40px !important;
+  height: 40px !important;
+  @media (max-width: 912px) {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+.border-h1 {
+  margin-top: 8px !important;
+  border-radius: 6px !important;
+  width: 100% !important;
+  @media (max-width: 912px) {
+    margin-top: 5px !important;
+    border-radius: 5px !important;
+  }
+}
+
+/* ======================= End-Header ======================= */
+
+/* ======================= Start-Table ======================= */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td {
+  border: 1px solid #ececec;
+  text-align: left;
+  padding: 8px;
+}
+th {
+  background: var(--primary2);
+  border: 1px solid var(--gray);
+  text-align: left;
+  padding: 10px;
+  @media (max-width: 640px) {
+    padding: 8px;
+  }
+}
+tr {
+  background: var(--white);
+}
+tr:nth-child(even):hover {
+  background: var(--tertiary);
+}
+.h-input {
+  height: 35px !important;
+}
+input:focus-visible {
+  outline: none;
+  border: 1px solid var(--primary) !important;
+}
+.side-scroll {
+  height: 82vh !important;
+  overflow-y: auto !important;
+}
+.cust-scroll {
+  height: 82vh !important;
+  overflow-y: auto !important;
+  @media (max-width: 641px) {
+    height: 76vh !important;
+  }
+}
+.side-input {
+  width: 95% !important;
+}
+.wid-sidebar {
+  width: 25% !important;
+  @media (max-width: 912px) and (min-width: 641px) {
+    width: 40% !important;
+  }
+  @media (max-width: 640px) {
+    width: 90% !important;
+  }
+}
+.pop-w {
+  width: 30% !important;
+  @media (max-width: 912px) and (min-width: 641px) {
+    width: 55% !important;
+  }
+  @media (max-width: 640px) {
+    width: 90% !important;
+  }
+}
+.close {
+  width: 20px !important;
+  height: 20px !important;
+}
+.border-images {
+  border: 1px dashed var(--gray);
+  height: 150px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border-radius: 10px !important;
+}
+.img-input {
+  width: 100% !important;
+  height: 150px !important;
+  opacity: 0 !important;
+}
+.preview-img {
+  height: 145px !important;
+}
+.table-colsm {
+  min-width: 80px !important;
+  text-align: center !important;
+}
+.table-collg {
+  min-width: 150px !important;
+  text-align: center !important;
+}
+.table-w {
+  width: 100% !important;
+  overflow: auto !important;
+}
+.table-w::-webkit-scrollbar {
+  height: 6px !important;
+  background: #fafafa !important;
+  width: 4px !important;
+}
+.table-w::-webkit-scrollbar-thumb {
+  background: #d6d2d2;
+  border-radius: 5px !important;
+}
+.sm-border-none {
+  @media (max-width: 640px) {
+    border: none !important;
+  }
+}
+.table-img {
+  width: 100% !important;
+  height: 40px !important;
+  object-fit: contain !important;
+  @media (max-width: 640px) {
+    height: 50px !important;
+    object-fit: contain !important;
+  }
+}
+/* ======================= End-Table ======================= */
+
+/* ======================= Start-Login ======================= */
+.w-login {
+  width: 97% !important;
+}
+/* ======================= End-Login ======================= */
+
+/* ======================= Start-dashboard ======================= */
+
+.dash-img {
+  width: 100% !important;
+  height: 110px !important;
+}
+.dashsection-img {
+  width: 100% !important;
+  height: 160px !important;
+}
+.dash-patch {
+  border-radius: 0px 16px 0px 0px;
+}
+.dash-hr {
+  border: none;
+  height: 3px;
+  background: var(--primary);
+  margin: 0px;
+}
+.bottom-btn {
+  width: 50px;
+  height: 50px;
+}
+.bord-top {
+  border-top: 3px solid;
+  border-image: linear-gradient(to right, #f1f5f7, var(--primary2), #f1f5f7) 1 0
+    0 0;
+}
+.circle-top {
+  clip-path: circle(50% at 50% 50%);
+  border-top: 6px solid var(--primary2);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-top: -43px;
+  background: var(--white);
+}
+.social-icon {
+  width: 25px !important;
+  height: 25px !important;
+}
+.tab-primary {
+  margin-bottom: -1px !important;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(0.25turn, #f1f5f7, var(--primary2), #f1f5f7);
+  border-image-slice: 1;
+}
+.bill-img {
+  width: 100% !important;
+  height: 80px !important;
+  @media (max-width: 640px) {
+    height: 60px !important;
+  }
+}
+
+/* ======================= End-dashboard ======================= */
+
+/* ======================= Start-Nodata ======================= */
+
+.nodata-img {
+  width: 180px !important;
+  height: 180px !important;
+  @media (max-width: 640px) {
+    width: 90px !important;
+    height: 90px !important;
+  }
+}
+.setting-scroll {
+  @media (max-width: 640px) {
+    min-width: 100% !important;
+    overflow-x: auto !important;
+    border: none !important;
+  }
+}
+
+/* ======================= End-Nodata ======================= */
