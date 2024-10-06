@@ -10,6 +10,7 @@ import ServiceSlice from "./managementredux/ServiceSlice";
 import FaqSlice from "./managementredux/FaqSlice";
 import ReviewSlice from "./managementredux/ReviewSlice";
 import BrandSlice from "./managementredux/BrandSlice";
+import EventSlice from "./managementredux/EventSlice";
 import ApiSlice from "./apiredux/ApiSlice";
 
 export const store = configureStore({
@@ -25,6 +26,7 @@ export const store = configureStore({
     faqdata: FaqSlice,
     reviewdata: ReviewSlice,
     branddata: BrandSlice,
+    eventdata: EventSlice,
     apidata: ApiSlice,
   },
 });

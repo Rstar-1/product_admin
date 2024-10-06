@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addgallery } from "../../../../../../redux/managementredux/GallerySlice";
 import { addservice } from "../../../../../../redux/managementredux/ServiceSlice";
 import { addclient } from "../../../../../../redux/managementredux/ClientSlice";
+import { addevent } from "../../../../../../redux/managementredux/EventSlice";
 import { addteam } from "../../../../../../redux/managementredux/TeamSlice";
 import AddSuccess from "../../popup/AddSuccess";
 import Loader from "../../popup/Loader";
@@ -131,6 +132,8 @@ const Add = () => {
       addAction = addteam;
     } else if (window.location.pathname.includes("client")) {
       addAction = addclient;
+    } else if (window.location.pathname.includes("products")) {
+      addAction = addevent;
     }
 
     const resultAction = await dispatch(addAction(formToSubmit));

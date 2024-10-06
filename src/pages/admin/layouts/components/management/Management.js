@@ -28,6 +28,7 @@ import {
   paginationclient,
   statusclient,
 } from "../../../../../redux/managementredux/ClientSlice";
+import { deleteevent, paginationevent, statusevent } from "../../../../../redux/managementredux/EventSlice";
 
 const Management = () => {
   // Add Edit Status Delete Popup
@@ -47,6 +48,8 @@ const Management = () => {
       return state.teamdata.teamdata.teamstore;
     } else if (window.location.pathname.includes("client")) {
       return state.clientdata.clientdata.clientstore;
+    } else if (window.location.pathname.includes("products")) {
+      return state.eventdata.eventdata.eventstore;
     }
   });
   const totalCount = useSelector((state) => {
@@ -58,6 +61,8 @@ const Management = () => {
       return state.teamdata.totalCount;
     } else if (window.location.pathname.includes("client")) {
       return state.clientdata.totalCount;
+    } else if (window.location.pathname.includes("products")) {
+      return state.eventdata.totalCount;
     }
   });
   // Redux State
@@ -88,6 +93,8 @@ const Management = () => {
       dispatch(paginationteam({ offset: currentpage * 6, search }));
     } else if (window.location.pathname.includes("client")) {
       dispatch(paginationclient({ offset: currentpage * 6, search }));
+    } else if (window.location.pathname.includes("products")) {
+      dispatch(paginationevent({ offset: currentpage * 6, search }));
     }
   }, [dispatch, currentpage, search]);
   // API useEffect
@@ -126,6 +133,14 @@ const Management = () => {
         if (deleteclient.fulfilled.match(resultAction)) {
           alert("Deleted successfully");
           dispatch(paginationclient({ offset: currentpage * 6, search }));
+        } else {
+          alert("Failed to delete item");
+        }
+      } else if (window.location.pathname.includes("products")) {
+        resultAction = await dispatch(deleteevent(id));
+        if (deleteevent.fulfilled.match(resultAction)) {
+          alert("Deleted successfully");
+          dispatch(paginationevent({ offset: currentpage * 6, search }));
         } else {
           alert("Failed to delete item");
         }
@@ -177,6 +192,14 @@ const Management = () => {
         } else {
           alert("Failed to publish");
         }
+      } else if (window.location.pathname.includes("products")) {
+        resultAction = await dispatch(statusevent({ id, data }));
+        if (statusevent.fulfilled.match(resultAction)) {
+          alert("Published successfully");
+          dispatch(paginationevent({ offset: currentpage * 6, search }));
+        } else {
+          alert("Failed to publish");
+        }
       }
     } catch (error) {
       console.error("Error updating status:", error);
@@ -196,6 +219,8 @@ const Management = () => {
       return { Title: "Teams", Original: "Teams" };
     } else if (window.location.pathname.includes("client")) {
       return { Title: "Clients", Original: "Clients" };
+    } else if (window.location.pathname.includes("products")) {
+      return { Title: "Products", Original: "Products" };
     } else {
       return { Title: "Default Page", Original: "Default" };
     }

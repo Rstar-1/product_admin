@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updategallery } from "../../../../../../redux/managementredux/GallerySlice";
 import { updateservice } from "../../../../../../redux/managementredux/ServiceSlice";
 import { updateclient } from "../../../../../../redux/managementredux/ClientSlice";
+import { updateevent } from "../../../../../../redux/managementredux/EventSlice";
 import { updateteam } from "../../../../../../redux/managementredux/TeamSlice";
 import EditSuccess from "../../popup/EditSuccess";
 import Loader from "../../popup/Loader";
@@ -143,8 +144,10 @@ const Edit = (props) => {
       updateAction = updateservice;
     } else if (window.location.pathname.includes("team")) {
       updateAction = updateteam;
-    }else if (window.location.pathname.includes("client")) {
+    } else if (window.location.pathname.includes("client")) {
       updateAction = updateclient;
+    } else if (window.location.pathname.includes("products")) {
+      updateAction = updateevent;
     }
 
     const resultAction = await dispatch(

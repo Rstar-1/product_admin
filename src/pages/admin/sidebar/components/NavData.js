@@ -60,7 +60,7 @@ const sidebarmenu = [
   },
   {
     icon: "user",
-    name: "MyAdmin",
+    name: "Management",
     route: "",
     accordian: "accordion-2",
     tabId: "cb2",
@@ -82,17 +82,46 @@ const sidebarmenu = [
       },
       {
         icon: "circle",
+        name: "Products",
+        route: "products",
+      },
+      {
+        icon: "circle",
         name: "Teams",
         route: "team",
       },
     ],
   },
   {
-    icon: "briefcase",
-    name: "CMS",
+    icon: "settings",
+    name: "MyAdmin",
     route: "",
     accordian: "accordion-3",
     tabId: "cb3",
+    dropdown: [
+      {
+        icon: "circle",
+        name: "Review",
+        route: "review",
+      },
+      {
+        icon: "circle",
+        name: "Brands",
+        route: "brands",
+      },
+      {
+        icon: "circle",
+        name: "FAQ",
+        route: "faq",
+      },
+    ],
+  },
+  {
+    icon: "file",
+    name: "CMS",
+    route: "cms",
+    accordian: "accordion-4",
+    tabId: "cb4",
     dropdown: [
       {
         icon: "circle",
@@ -105,14 +134,6 @@ const sidebarmenu = [
         route: "image-cms",
       },
     ],
-  },
-  {
-    icon: "settings",
-    name: "Blog",
-    route: "management",
-    accordian: "accordion-4",
-    tabId: "cb4",
-    dropdown: [],
   },
   {
     icon: "book",

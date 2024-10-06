@@ -11,7 +11,7 @@ import Coming from "./pages/admin/layouts/components/coming/Coming";
 import Error from "./pages/error/Error";
 // Pages
 import Dashboard from "./pages/admin/layouts/components/dashboard/Dashboard";
-// import Loader from "./pages/admin/layouts/components/popup/Loader";
+import Loader from "./pages/admin/layouts/components/popup/Loader";
 import TextCms from "./pages/admin/layouts/components/textcms/TextCms";
 import ImageCms from "./pages/admin/layouts/components/imagecms/ImageCms";
 import Seo from "./pages/admin/layouts/components/seo/Seo";
@@ -20,23 +20,23 @@ import Billing from "./pages/admin/layouts/components/billing/Billing";
 
 const App = () => {
   const location = useLocation();
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
-  // // Loading
-  // if (loading) {
-  //   return (
-  //     <div className="flex justify-center items-center h-100">
-  //       <Loader />
-  //     </div>
-  //   );
-  // }
-  // // Loading
+  // Loading
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-100">
+        <Loader />
+      </div>
+    );
+  }
+  // Loading
 
   return (
     <div className="App relative">
@@ -71,6 +71,7 @@ const App = () => {
             <Route path="/gallery" element={<Management />} />
             <Route path="/service" element={<Management />} />
             <Route path="/client" element={<Management />} />
+            <Route path="/products" element={<Management />} />
             <Route path="/team" element={<Management />} />
             <Route path="/billing" element={<Billing />} />
             <Route path="/seo" element={<Seo />} />
