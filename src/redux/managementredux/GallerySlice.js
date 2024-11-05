@@ -17,12 +17,16 @@ export const showgallery = createAsyncThunk(
 
 export const paginationgallery = createAsyncThunk(
   "gallery/paginationgallery",
-  async ({ offset, search }) => {
-    const response = await axios.post(
-      "http://localhost:8000/api/gallerypaginationdata",
-      { offset, search }
-    );
-    return response.data;
+  async ({ offset, search }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/gallerypaginationdata",
+        { offset, search }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 

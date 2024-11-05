@@ -2,24 +2,19 @@ import React, { useState, useEffect } from "react";
 import FeatherIcon from "feather-icons-react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  paginationteammanagement,
-  paginationservicemanagement,
-  paginationgallerymanagement,
-  paginationclientmanagement,
-  paginationfaqmanagement,
-  paginationeventmanagement,
-  deletemanagement,
-  statusmanagement,
-} from "../../../../../redux/managementredux/ManagementSlice";
-import { showapidata } from "../../../../../redux/apiredux/ApiSlice";
+  paginationreview,
+  deletereview,
+  statusreview,
+} from "../../../../../redux/managementredux/ReviewSlice";
 import ReactPaginate from "react-paginate";
+import ReactStars from "react-rating-stars-component";
 import Search from "../../../../components/Search";
 import Nodata from "../../../../error/Nodata";
 import Banner from "../../../../components/Banner";
 import Edit from "./components/Edit";
 import Add from "./components/Add";
 
-const Management = () => {
+const Review = () => {
   // Add Edit Status Delete Popup
   const [addshow, setaddshow] = useState(false);
   const [editshow, seteditshow] = useState(false);
@@ -28,36 +23,10 @@ const Management = () => {
 
   // Redux State
   const dispatch = useDispatch();
-  const getdata = useSelector((state) => {
-    if (window.location.pathname.includes("team")) {
-      return state.managementdata.managementdata.managementteamstore;
-    } else if (window.location.pathname.includes("service")) {
-      return state.managementdata.managementdata.managementservicestore;
-    } else if (window.location.pathname.includes("gallery")) {
-      return state.managementdata.managementdata.managementgallerystore;
-    } else if (window.location.pathname.includes("client")) {
-      return state.managementdata.managementdata.managementclientstore;
-    } else if (window.location.pathname.includes("faq")) {
-      return state.managementdata.managementdata.managementfaqstore;
-    } else if (window.location.pathname.includes("event")) {
-      return state.managementdata.managementdata.managementeventstore;
-    }
-  });
-  const totalCount = useSelector((state) => {
-    if (window.location.pathname.includes("team")) {
-      return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("service")) {
-      return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("gallery")) {
-      return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("client")) {
-      return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("faq")) {
-      return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("event")) {
-      return state.managementdata.totalCount;
-    }
-  });
+  const getdata = useSelector(
+    (state) => state.reviewdata.reviewdata.reviewstore
+  );
+  const totalCount = useSelector((state) => state.reviewdata.totalCount);
   // Redux State
 
   // Pagination and Search
@@ -77,92 +46,19 @@ const Management = () => {
 
   // API useEffect
   useEffect(() => {
-    dispatch(showapidata());
-    if (window.location.pathname.includes("team")) {
-      dispatch(paginationteammanagement({ offset: currentpage * 6, search }));
-    } else if (window.location.pathname.includes("service")) {
-      dispatch(
-        paginationservicemanagement({ offset: currentpage * 6, search })
-      );
-    } else if (window.location.pathname.includes("gallery")) {
-      dispatch(
-        paginationgallerymanagement({ offset: currentpage * 6, search })
-      );
-    } else if (window.location.pathname.includes("client")) {
-      dispatch(paginationclientmanagement({ offset: currentpage * 6, search }));
-    } else if (window.location.pathname.includes("faq")) {
-      dispatch(paginationfaqmanagement({ offset: currentpage * 6, search }));
-    } else if (window.location.pathname.includes("event")) {
-      dispatch(paginationeventmanagement({ offset: currentpage * 6, search }));
-    }
+    dispatch(paginationreview({ offset: currentpage * 6, search }));
   }, [dispatch, currentpage, search]);
   // API useEffect
 
   // Delete Data
   const handleDelete = async (id) => {
     try {
-      let resultAction;
-
-      if (window.location.pathname.includes("team")) {
-        resultAction = await dispatch(deletemanagement(id));
-        if (deletemanagement.fulfilled.match(resultAction)) {
-          alert("Deleted successfully");
-          dispatch(
-            paginationteammanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to delete item");
-        }
-      } else if (window.location.pathname.includes("service")) {
-        resultAction = await dispatch(deletemanagement(id));
-        if (deletemanagement.fulfilled.match(resultAction)) {
-          alert("Deleted successfully");
-          dispatch(
-            paginationservicemanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to delete item");
-        }
-      } else if (window.location.pathname.includes("gallery")) {
-        resultAction = await dispatch(deletemanagement(id));
-        if (deletemanagement.fulfilled.match(resultAction)) {
-          alert("Deleted successfully");
-          dispatch(
-            paginationgallerymanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to delete item");
-        }
-      } else if (window.location.pathname.includes("client")) {
-        resultAction = await dispatch(deletemanagement(id));
-        if (deletemanagement.fulfilled.match(resultAction)) {
-          alert("Deleted successfully");
-          dispatch(
-            paginationclientmanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to delete item");
-        }
-      } else if (window.location.pathname.includes("faq")) {
-        resultAction = await dispatch(deletemanagement(id));
-        if (deletemanagement.fulfilled.match(resultAction)) {
-          alert("Deleted successfully");
-          dispatch(
-            paginationfaqmanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to delete item");
-        }
-      } else if (window.location.pathname.includes("event")) {
-        resultAction = await dispatch(deletemanagement(id));
-        if (deletemanagement.fulfilled.match(resultAction)) {
-          alert("Deleted successfully");
-          dispatch(
-            paginationeventmanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to delete item");
-        }
+      const resultAction = await dispatch(deletereview(id));
+      if (deletereview.fulfilled.match(resultAction)) {
+        alert("Deleted successfully");
+        dispatch(paginationreview({ offset: currentpage * 6, search }));
+      } else {
+        alert("Failed to delete item");
       }
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -176,96 +72,14 @@ const Management = () => {
       const data = {
         status: newstatus,
       };
-
-      let resultAction;
-
-      if (window.location.pathname.includes("team")) {
-        resultAction = await dispatch(statusmanagement({ id, data }));
-        if (statusmanagement.fulfilled.match(resultAction)) {
-          alert("Published successfully");
-          dispatch(
-            paginationteammanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to publish");
-        }
-      } else if (window.location.pathname.includes("service")) {
-        resultAction = await dispatch(statusmanagement({ id, data }));
-        if (statusmanagement.fulfilled.match(resultAction)) {
-          alert("Published successfully");
-          dispatch(
-            paginationservicemanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to publish");
-        }
-      } else if (window.location.pathname.includes("gallery")) {
-        resultAction = await dispatch(statusmanagement({ id, data }));
-        if (statusmanagement.fulfilled.match(resultAction)) {
-          alert("Published successfully");
-          dispatch(
-            paginationgallerymanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to publish");
-        }
-      } else if (window.location.pathname.includes("client")) {
-        resultAction = await dispatch(statusmanagement({ id, data }));
-        if (statusmanagement.fulfilled.match(resultAction)) {
-          alert("Published successfully");
-          dispatch(
-            paginationclientmanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to publish");
-        }
-      } else if (window.location.pathname.includes("faq")) {
-        resultAction = await dispatch(statusmanagement({ id, data }));
-        if (statusmanagement.fulfilled.match(resultAction)) {
-          alert("Published successfully");
-          dispatch(
-            paginationfaqmanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to publish");
-        }
-      } else if (window.location.pathname.includes("event")) {
-        resultAction = await dispatch(statusmanagement({ id, data }));
-        if (statusmanagement.fulfilled.match(resultAction)) {
-          alert("Published successfully");
-          dispatch(
-            paginationeventmanagement({ offset: currentpage * 6, search })
-          );
-        } else {
-          alert("Failed to publish");
-        }
-      }
+      await dispatch(statusreview({ id, data }));
+      dispatch(paginationreview({ offset: currentpage * 6, search }));
+      // Optionally handle success or failure here
     } catch (error) {
-      console.error("Error updating status:", error);
+      console.error("Error updating user:", error);
     }
   };
   // Status
-
-  // Banner
-  const getBannerProps = () => {
-    if (window.location.pathname.includes("team")) {
-      return { Title: "Teams", Original: "Teams" };
-    } else if (window.location.pathname.includes("service")) {
-      return { Title: "Service", Original: "Service" };
-    } else if (window.location.pathname.includes("gallery")) {
-      return { Title: "Gallery", Original: "Gallery" };
-    } else if (window.location.pathname.includes("client")) {
-      return { Title: "Clients", Original: "Clients" };
-    } else if (window.location.pathname.includes("faq")) {
-      return { Title: "Faq", Original: "Faq" };
-    } else if (window.location.pathname.includes("event")) {
-      return { Title: "Events", Original: "Events" };
-    } else {
-      return { Title: "Default Page", Original: "Default" };
-    }
-  };
-  const bannerProps = getBannerProps();
-  // Banner
 
   return (
     <div className="cust-scroll ptpx12 pbpx90 px4 drawer">
@@ -280,7 +94,7 @@ const Management = () => {
           <div className="bgprimary p10">
             <div className="flex items-center justify-between gap-4 plpx10 prpx10">
               <p className="fsize16 textwhite mtpx4 mbpx4 cursor-pointer font-500">
-                Add {bannerProps.Title}
+                Add Review
               </p>
               <FeatherIcon
                 icon="x"
@@ -304,7 +118,7 @@ const Management = () => {
           <div className="bgprimary p10">
             <div className="flex items-center justify-between gap-4 plpx10 prpx10">
               <p className="fsize16 textwhite mtpx4 mbpx4 cursor-pointer font-500">
-                Edit {bannerProps.Title}
+                Edit Review
               </p>
               <FeatherIcon
                 icon="x"
@@ -317,11 +131,7 @@ const Management = () => {
           <Edit editshow={editshow} />
         </div>
       </div>
-      <Banner
-        Title={bannerProps.Title}
-        Route="Management"
-        Original={bannerProps.Original}
-      />
+      <Banner Title="Review" Route="MyAdmin" Original="Review" />
       <div className="w-full bordb flex items-center mtpx16">
         <p
           onClick={() => setCheck(1)}
@@ -365,10 +175,10 @@ const Management = () => {
                   <thead>
                     <tr>
                       <th className="fsize13 textwhite font-300 table-colsm">
-                        <p>SectionId</p>
-                      </th>
-                      <th className="fsize13 textwhite font-300 table-colsm">
                         <p>Image</p>
+                      </th>
+                      <th className="fsize13 textwhite font-300 table-collg">
+                        <p>Rating</p>
                       </th>
                       <th className="fsize13 textwhite font-300 table-collg">
                         <p>Title</p>
@@ -400,37 +210,42 @@ const Management = () => {
                           <>
                             <tr>
                               <td className="fsize13 textforth font-300 table-colsm">
-                                <p>{e?.sectionid}</p>
-                              </td>
-                              <td className="fsize13 textforth font-300 table-colsm">
                                 <img
-                                  src={e?.picture}
+                                  src={e.picture}
                                   className="table-img"
                                   alt="table-img"
                                 />
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p>{e?.title}</p>
+                                <ReactStars
+                                  count={5}
+                                  value={e.rating}
+                                  size={18}
+                                  activeColor="#ffd700"
+                                />
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p>{e?.subtitle}</p>
+                                <p>{e.title}</p>
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p className="line-clamp2">{e?.description}</p>
+                                <p>{e.subtitle}</p>
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p>{new Date(e?.createdAt).toDateString()}</p>
+                                <p>{e.description}</p>
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p>{new Date(e?.updatedAt).toDateString()}</p>
+                                <p>{new Date(e.createdAt).toDateString()}</p>
+                              </td>
+                              <td className="fsize13 textforth font-300 table-collg">
+                                <p>{new Date(e.updatedAt).toDateString()}</p>
                               </td>
                               <td className="fsize13 textforth font-300 table-colsm">
-                                {e?.status === true ? (
+                                {e.status === true ? (
                                   <>
                                     <button
                                       className="border-0 cursor-pointer font-400 textsuccess rounded-20 fsize12 px12 py4 bg-light-success"
                                       onClick={() =>
-                                        handlePublish(e?._id, !e?.status)
+                                        handlePublish(e._id, !e.status)
                                       }
                                     >
                                       Publish
@@ -441,7 +256,7 @@ const Management = () => {
                                     <button
                                       className="border-0 cursor-pointer font-400 textdanger rounded-20 fsize12 px12 py4 bg-light-danger"
                                       onClick={() =>
-                                        handlePublish(e?._id, !e?.status)
+                                        handlePublish(e._id, !e.status)
                                       }
                                     >
                                       Unpublish
@@ -457,7 +272,7 @@ const Management = () => {
                                   size={16}
                                 />
                                 <FeatherIcon
-                                  onClick={() => handleDelete(e?._id)}
+                                  onClick={() => handleDelete(e._id)}
                                   icon="trash-2"
                                   className="textdanger cursor-pointer"
                                   size={16}
@@ -483,24 +298,24 @@ const Management = () => {
               <>
                 {getdata?.map((e) => (
                   <>
-                    {e?.status === true ? (
+                    {e.status === true ? (
                       <>
                         <div className="bgwhite d-shadow rounded-5 w-full mbpx10 relative">
                           <div className="p10">
                             <div className="flex items-center">
                               <div className="w-30">
                                 <img
-                                  src={e?.picture}
-                                  className="table-img rounded-5 bg-ec"
+                                  src={e.picture}
+                                  className="table-img rounded-5"
                                   alt="table-img "
                                 />
                               </div>
                               <div className="w-70 px10">
                                 <h6 className="fsize18 leading textprimary mtpx4 mbpx1 line-clamp1">
-                                  {e?.title}
+                                  {e.title}
                                 </h6>
                                 <p className="fsize10 textgray mtpx6 leading font-200 line-clamp2">
-                                  {e?.description}
+                                  {e.description}
                                 </p>
                               </div>
                             </div>
@@ -510,7 +325,7 @@ const Management = () => {
                                   Start Date
                                 </h6>
                                 <p className="fsize10 textgray">
-                                  {new Date(e?.createdAt).toDateString()}
+                                  {new Date(e.createdAt).toDateString()}
                                 </p>
                               </div>
                               <div>
@@ -518,30 +333,35 @@ const Management = () => {
                                   End Date
                                 </h6>
                                 <p className="fsize10 textgray">
-                                  {new Date(e?.updatedAt).toDateString()}
+                                  {new Date(e.updatedAt).toDateString()}
                                 </p>
                               </div>
                             </div>
                             <div className="mtpx10">
                               <h6 className="textgray leading fsize12 mtpx1 mbpx1">
-                                Section ID
+                                Rating
                               </h6>
-                              <p className="fsize10 textgray">{e?.sectionid}</p>
+                              <ReactStars
+                                count={5}
+                                value={e.rating}
+                                size={18}
+                                activeColor="#ffd700"
+                              />
                             </div>
                             <div className="mtpx10">
                               <h6 className="textgray leading fsize12 mtpx1 mbpx1">
                                 Sub Title
                               </h6>
-                              <p className="fsize10 textgray">{e?.subtitle}</p>
+                              <p className="fsize10 textgray">{e.subtitle}</p>
                             </div>
                           </div>
                           <div className="absolute top-0 right-0 m5 flex items-center">
-                            {e?.status === true ? (
+                            {e.status === true ? (
                               <>
                                 <div
                                   className="dot rounded-full bgsuccess"
                                   onClick={() =>
-                                    handlePublish(e?._id, !e?.status)
+                                    handlePublish(e._id, !e.status)
                                   }
                                 ></div>
                               </>
@@ -550,7 +370,7 @@ const Management = () => {
                                 <div
                                   className="dot rounded-full bgdanger"
                                   onClick={() =>
-                                    handlePublish(e?._id, !e?.status)
+                                    handlePublish(e._id, !e.status)
                                   }
                                 ></div>
                               </>
@@ -562,7 +382,7 @@ const Management = () => {
                               size={14}
                             />
                             <FeatherIcon
-                              onClick={() => handleDelete(e?._id)}
+                              onClick={() => handleDelete(e._id)}
                               icon="trash-2"
                               className="textdanger cursor-pointer"
                               size={14}
@@ -592,10 +412,10 @@ const Management = () => {
                   <thead>
                     <tr>
                       <th className="fsize13 textwhite font-300 table-colsm">
-                        <p>SectionId</p>
-                      </th>
-                      <th className="fsize13 textwhite font-300 table-colsm">
                         <p>Image</p>
+                      </th>
+                      <th className="fsize13 textwhite font-300 table-collg">
+                        <p>Rating</p>
                       </th>
                       <th className="fsize13 textwhite font-300 table-collg">
                         <p>Title</p>
@@ -615,9 +435,6 @@ const Management = () => {
                       <th className="fsize13 textwhite font-300 table-colsm">
                         <p>Status</p>
                       </th>
-                      <th className="fsize13 textwhite font-300 table-colsm">
-                        <p>Actions</p>
-                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -627,37 +444,42 @@ const Management = () => {
                           <>
                             <tr>
                               <td className="fsize13 textforth font-300 table-colsm">
-                                <p>{e?.sectionid}</p>
-                              </td>
-                              <td className="fsize13 textforth font-300 table-colsm">
                                 <img
-                                  src={e?.picture}
+                                  src={e.picture}
                                   className="table-img"
                                   alt="table-img"
                                 />
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p>{e?.title}</p>
+                                <ReactStars
+                                  count={5}
+                                  value={e.rating}
+                                  size={18}
+                                  activeColor="#ffd700"
+                                />
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p>{e?.subtitle}</p>
+                                <p>{e.title}</p>
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p className="line-clamp2">{e?.description}</p>
+                                <p>{e.subtitle}</p>
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p>{new Date(e?.createdAt).toDateString()}</p>
+                                <p>{e.description}</p>
                               </td>
                               <td className="fsize13 textforth font-300 table-collg">
-                                <p>{new Date(e?.updatedAt).toDateString()}</p>
+                                <p>{new Date(e.createdAt).toDateString()}</p>
+                              </td>
+                              <td className="fsize13 textforth font-300 table-collg">
+                                <p>{new Date(e.updatedAt).toDateString()}</p>
                               </td>
                               <td className="fsize13 textforth font-300 table-colsm">
-                                {e?.status === true ? (
+                                {e.status === true ? (
                                   <>
                                     <button
                                       className="border-0 cursor-pointer font-400 textsuccess rounded-20 fsize12 px12 py4 bg-light-success"
                                       onClick={() =>
-                                        handlePublish(e?._id, !e?.status)
+                                        handlePublish(e._id, !e.status)
                                       }
                                     >
                                       Publish
@@ -668,27 +490,13 @@ const Management = () => {
                                     <button
                                       className="border-0 cursor-pointer font-400 textdanger rounded-20 fsize12 px12 py4 bg-light-danger"
                                       onClick={() =>
-                                        handlePublish(e?._id, !e?.status)
+                                        handlePublish(e._id, !e.status)
                                       }
                                     >
                                       Unpublish
                                     </button>
                                   </>
                                 )}
-                              </td>
-                              <td className="fsize13 textforth table-colsm">
-                                <FeatherIcon
-                                  onClick={() => seteditshow(e)}
-                                  icon="edit"
-                                  className="textprimary mx3 cursor-pointer"
-                                  size={16}
-                                />
-                                <FeatherIcon
-                                  onClick={() => handleDelete(e?._id)}
-                                  icon="trash-2"
-                                  className="textdanger cursor-pointer"
-                                  size={16}
-                                />
                               </td>
                             </tr>
                           </>
@@ -710,24 +518,24 @@ const Management = () => {
               <>
                 {getdata?.map((e) => (
                   <>
-                    {e?.status === false ? (
+                    {e.status === false ? (
                       <>
                         <div className="bgwhite d-shadow rounded-5 w-full mbpx10 relative">
                           <div className="p10">
                             <div className="flex items-center">
                               <div className="w-30">
                                 <img
-                                  src={e?.picture}
-                                  className="table-img rounded-5 bg-ec"
+                                  src={e.picture}
+                                  className="table-img rounded-5"
                                   alt="table-img "
                                 />
                               </div>
                               <div className="w-70 px10">
                                 <h6 className="fsize18 leading textprimary mtpx4 mbpx1 line-clamp1">
-                                  {e?.title}
+                                  {e.title}
                                 </h6>
                                 <p className="fsize10 textgray mtpx6 leading font-200 line-clamp2">
-                                  {e?.description}
+                                  {e.description}
                                 </p>
                               </div>
                             </div>
@@ -737,7 +545,7 @@ const Management = () => {
                                   Start Date
                                 </h6>
                                 <p className="fsize10 textgray">
-                                  {new Date(e?.createdAt).toDateString()}
+                                  {new Date(e.createdAt).toDateString()}
                                 </p>
                               </div>
                               <div>
@@ -745,30 +553,35 @@ const Management = () => {
                                   End Date
                                 </h6>
                                 <p className="fsize10 textgray">
-                                  {new Date(e?.updatedAt).toDateString()}
+                                  {new Date(e.updatedAt).toDateString()}
                                 </p>
                               </div>
                             </div>
                             <div className="mtpx10">
                               <h6 className="textgray leading fsize12 mtpx1 mbpx1">
-                                Section ID
+                                Rating
                               </h6>
-                              <p className="fsize10 textgray">{e?.sectionid}</p>
+                              <ReactStars
+                                count={5}
+                                value={e.rating}
+                                size={18}
+                                activeColor="#ffd700"
+                              />
                             </div>
                             <div className="mtpx10">
                               <h6 className="textgray leading fsize12 mtpx1 mbpx1">
                                 Sub Title
                               </h6>
-                              <p className="fsize10 textgray">{e?.subtitle}</p>
+                              <p className="fsize10 textgray">{e.subtitle}</p>
                             </div>
                           </div>
-                          <div className="absolute top-0 right-0 m5 flex items-center">
-                            {e?.status === true ? (
+                          <div className="absolute top-0 right-0 m10 flex items-center">
+                            {e.status === true ? (
                               <>
                                 <div
                                   className="dot rounded-full bgsuccess"
                                   onClick={() =>
-                                    handlePublish(e?._id, !e?.status)
+                                    handlePublish(e._id, !e.status)
                                   }
                                 ></div>
                               </>
@@ -777,23 +590,11 @@ const Management = () => {
                                 <div
                                   className="dot rounded-full bgdanger"
                                   onClick={() =>
-                                    handlePublish(e?._id, !e?.status)
+                                    handlePublish(e._id, !e.status)
                                   }
                                 ></div>
                               </>
                             )}
-                            <FeatherIcon
-                              onClick={() => seteditshow(e)}
-                              icon="edit"
-                              className="textprimary mx6 cursor-pointer"
-                              size={14}
-                            />
-                            <FeatherIcon
-                              onClick={() => handleDelete(e?._id)}
-                              icon="trash-2"
-                              className="textdanger cursor-pointer"
-                              size={14}
-                            />
                           </div>
                         </div>
                       </>
@@ -826,4 +627,4 @@ const Management = () => {
   );
 };
 
-export default Management;
+export default Review;

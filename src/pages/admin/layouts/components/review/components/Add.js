@@ -1,46 +1,31 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addmanagement } from "../../../../../../redux/managementredux/ManagementSlice";
+import { addreview } from "../../../../../../redux/managementredux/ReviewSlice";
+import ReactStars from "react-rating-stars-component";
 import AddSuccess from "../../popup/AddSuccess";
 import Loader from "../../popup/Loader";
-import Select from "react-select";
-import Error from "../../../../../error/Error";
+import Error from "../../popup/Error";
 import FeatherIcon from "feather-icons-react";
 
 const Add = () => {
   // Popup State
   const [success, setsuccess] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const options = [
-    { value: "Team", label: "Team" },
-    { value: "Service", label: "Service" },
-    { value: "Gallery", label: "Gallery" },
-    { value: "Client", label: "Client" },
-    { value: "Faq", label: "Faq" },
-    { value: "Event", label: "Event" },
-  ];
   // Popup State
 
   // Redux State
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.gallerydata);
+  const { loading, error } = useSelector((state) => state.reviewdata);
   // Redux State
 
   // Input State Management
   const [formData, setFormData] = useState({
-    sectionid: "",
+    rating: 0,
     title: "",
     subtitle: "",
     description: "",
     picture: null,
     imagePreviewUrl: "",
   });
-
-  // Handle Select change
-  const handleSelectChange = (selected) => {
-    setSelectedOption(selected);
-    setFormData({ ...formData, sectionid: selected?.value || "" });
-  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -55,6 +40,13 @@ const Add = () => {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleStar = (rating) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      rating,
+    }));
   };
 
   const handleRemoveImage = () => {
@@ -76,7 +68,7 @@ const Add = () => {
 
   // Validation Input
   const [errors, setErrors] = useState({
-    sectionid: "",
+    rating: "",
     title: "",
     subtitle: "",
     description: "",
@@ -86,15 +78,15 @@ const Add = () => {
   const validateForm = () => {
     let valid = true;
     let newErrors = {
-      sectionid: "",
+      rating: "",
       title: "",
       subtitle: "",
       description: "",
       picture: "",
     };
 
-    if (formData.sectionid.trim() === "") {
-      newErrors.sectionid = "Enter Section Id";
+    if (formData.rating === 0) {
+      newErrors.rating = "Enter Rating";
       valid = false;
     }
     if (formData.title.trim() === "") {
@@ -128,18 +120,18 @@ const Add = () => {
     }
 
     const formToSubmit = new FormData();
-    formToSubmit.append("sectionid", formData.sectionid);
+    formToSubmit.append("rating", formData.rating);
     formToSubmit.append("title", formData.title);
     formToSubmit.append("subtitle", formData.subtitle);
     formToSubmit.append("description", formData.description);
     formToSubmit.append("picture", formData.picture);
 
-    let addAction = addmanagement;
-    const resultAction = await dispatch(addAction(formToSubmit));
-    if (addAction.fulfilled.match(resultAction)) {
+    const resultAction = await dispatch(addreview(formToSubmit));
+
+    if (addreview.fulfilled.match(resultAction)) {
       setsuccess(true);
       setFormData({
-        sectionid: "",
+        rating: 0,
         title: "",
         subtitle: "",
         description: "",
@@ -147,7 +139,7 @@ const Add = () => {
         imagePreviewUrl: "",
       });
       setErrors({
-        sectionid: "",
+        rating: "",
         title: "",
         subtitle: "",
         description: "",
@@ -179,18 +171,18 @@ const Add = () => {
   // Loading and Error
 
   return (
-    <div className="p20 side-scroll">
+    <div className="p20 cust-scroll">
       {success ? (
         <div className="fixed flex justify-center items-center bg-glass top-0 left-0 h-100 z-999 w-full">
           <AddSuccess
-            title="Add Gallery"
+            title="Add Review"
             description="placeholder text commonly used to demonstrate the visual form of a
             document or a typeface content."
           />
         </div>
       ) : null}
       <form onSubmit={handleSubmit}>
-        <div className="">
+        <div>
           <label className="fsize14 textgray">Image</label>
           <div className="mtpx8">
             <div className="relative">
@@ -239,24 +231,23 @@ const Add = () => {
                 )}
               </div>
             </div>
-            {errors.picture && (
-              <p className="textdanger mtpx6 fsize12">{errors.picture}</p>
+            {errors.cmsdata && (
+              <p className="textdanger mtpx6 fsize13">{errors.cmsdata}</p>
             )}
           </div>
         </div>
         <div className="mtpx15">
-          <label className="fsize14 textgray">Section Id</label>
+          <label className="fsize14 textgray">Rating</label>
           <div className="mtpx8">
-            <Select
-              value={selectedOption}
-              onChange={handleSelectChange}
-              options={options}
-              className=""
-              placeholder="Enter Section Id"
-              aria-label="sectionid"
+            <ReactStars
+              count={5}
+              value={formData.rating}
+              onChange={handleStar}
+              size={24}
+              activeColor="#ffd700"
             />
-            {errors.sectionid && (
-              <p className="textdanger mtpx6 fsize12">{errors.sectionid}</p>
+            {errors.rating && (
+              <p className="textdanger mtpx6 fsize13">{errors.rating}</p>
             )}
           </div>
         </div>
@@ -273,7 +264,7 @@ const Add = () => {
               aria-label="title"
             />
             {errors.title && (
-              <p className="textdanger mtpx6 fsize12">{errors.title}</p>
+              <p className="textdanger mtpx6 fsize13">{errors.title}</p>
             )}
           </div>
         </div>
@@ -290,7 +281,7 @@ const Add = () => {
               aria-label="subtitle"
             />
             {errors.subtitle && (
-              <p className="textdanger mtpx6 fsize12">{errors.subtitle}</p>
+              <p className="textdanger mtpx6 fsize13">{errors.subtitle}</p>
             )}
           </div>
         </div>
@@ -307,7 +298,7 @@ const Add = () => {
               aria-label="description"
             />
             {errors.description && (
-              <p className="textdanger mtpx6 fsize12">{errors.description}</p>
+              <p className="textdanger mtpx6 fsize13">{errors.description}</p>
             )}
           </div>
         </div>

@@ -20,10 +20,13 @@ export const paginationbrand = createAsyncThunk(
   "brand/paginationbrand",
   async ({ offset, search, project }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${project}/api/brandpaginationdata`, {
-        offset,
-        search,
-      });
+      const response = await axios.post(
+        `http://localhost:8000/api/brandpaginationdata`,
+        {
+          offset,
+          search,
+        }
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

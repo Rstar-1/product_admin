@@ -8,7 +8,7 @@ const Billing = () => {
       <Banner Title="Billing" Route="Management" Original="Billing" />
       <div className="flex sm-block gap-12 mtpx20 w-full items-start">
         <div className="w-70 md-w-60 sm-w-full grid-cols-1 gap-8">
-          <div className="flex rounded-5 items-center justify-between py10 px20 sm-py8 sm-px12 border-ec rounded-5">
+          <div className="flex rounded-5 items-center justify-between py10 px20 sm-py8 sm-px12 bgwhite d-shadow rounded-5">
             <div className="flex items-center gap-9 w-90 md-w-80 sm-w-80">
               <div className="w-20 md-w-30 sm-w-30">
                 <img
@@ -30,7 +30,7 @@ const Billing = () => {
               </button>
             </div>
           </div>
-          <div className="flex rounded-5 items-center justify-between py10 px20 sm-py8 sm-px12 border-ec rounded-5">
+          <div className="flex rounded-5 items-center justify-between py10 px20 sm-py8 sm-px12 bgwhite d-shadow rounded-5">
             <div className="flex items-center gap-9 w-90 md-w-80 sm-w-80">
               <div className="w-20 md-w-30 sm-w-30">
                 <img

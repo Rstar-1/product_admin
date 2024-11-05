@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updategallery } from "../../../../../../redux/managementredux/GallerySlice";
-import { updateservice } from "../../../../../../redux/managementredux/ServiceSlice";
-import { updateclient } from "../../../../../../redux/managementredux/ClientSlice";
-import { updateevent } from "../../../../../../redux/managementredux/EventSlice";
-import { updateteam } from "../../../../../../redux/managementredux/TeamSlice";
+import { updatemanagement } from "../../../../../../redux/managementredux/ManagementSlice";
 import EditSuccess from "../../popup/EditSuccess";
 import Loader from "../../popup/Loader";
 import Error from "../../../../../error/Error";
 import FeatherIcon from "feather-icons-react";
+import Select from "react-select";
 
 const Edit = (props) => {
   // Popup State
   const [success, setsuccess] = useState(false);
+  const options = [
+    { value: "Team", label: "Team" },
+    { value: "Service", label: "Service" },
+    { value: "Gallery", label: "Gallery" },
+    { value: "Client", label: "Client" },
+    { value: "Faq", label: "Faq" },
+    { value: "Event", label: "Event" },
+  ];
   // Popup State
 
   // Redux State
@@ -29,6 +34,14 @@ const Edit = (props) => {
     picture: null,
     imagePreviewUrl: "",
   });
+
+  // Handle Select change
+  const handleSelectChange = (selected) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      sectionid: selected ? selected.value : "",
+    }));
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -136,19 +149,7 @@ const Edit = (props) => {
     formToSubmit.append("description", formData.description);
     formToSubmit.append("picture", formData.picture);
 
-    let updateAction;
-
-    if (window.location.pathname.includes("gallery")) {
-      updateAction = updategallery;
-    } else if (window.location.pathname.includes("service")) {
-      updateAction = updateservice;
-    } else if (window.location.pathname.includes("team")) {
-      updateAction = updateteam;
-    } else if (window.location.pathname.includes("client")) {
-      updateAction = updateclient;
-    } else if (window.location.pathname.includes("products")) {
-      updateAction = updateevent;
-    }
+    let updateAction = updatemanagement;
 
     const resultAction = await dispatch(
       updateAction({ id: props.editshow._id, formData: formToSubmit })
@@ -266,13 +267,15 @@ const Edit = (props) => {
         <div className="mtpx15">
           <label className="fsize14 textgray">Section Id</label>
           <div className="mtpx8">
-            <input
-              className="side-input bgwhite textgray h-input fsize14 rounded-5 plpx10 border-ec"
+            <Select
+              value={options.find(
+                (option) => option.value === formData.sectionid
+              )}
+              onChange={handleSelectChange}
+              options={options}
+              classNamePrefix="react-select" // Adjust this if needed for styling
+              className="w-full"
               placeholder="Enter Section Id"
-              value={formData.sectionid}
-              onChange={handleInputChange}
-              name="sectionid"
-              id="sectionid"
               aria-label="sectionid"
             />
             {errors.sectionid && (

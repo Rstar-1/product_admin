@@ -17,6 +17,8 @@ import ImageCms from "./pages/admin/layouts/components/imagecms/ImageCms";
 import Seo from "./pages/admin/layouts/components/seo/Seo";
 import Management from "./pages/admin/layouts/components/management/Management";
 import Billing from "./pages/admin/layouts/components/billing/Billing";
+import Review from "./pages/admin/layouts/components/review/Review";
+import CMS from "./pages/admin/layouts/components/cms/CMS";
 
 const App = () => {
   const location = useLocation();
@@ -71,8 +73,11 @@ const App = () => {
             <Route path="/gallery" element={<Management />} />
             <Route path="/service" element={<Management />} />
             <Route path="/client" element={<Management />} />
-            <Route path="/products" element={<Management />} />
+            <Route path="/event" element={<Management />} />
             <Route path="/team" element={<Management />} />
+            <Route path="/review" element={<Review />} />
+            <Route path="/faq" element={<Management />} />
+            <Route path="/cms" element={<CMS />} />
             <Route path="/billing" element={<Billing />} />
             <Route path="/seo" element={<Seo />} />
             {/* ======================= End-Pages ======================= */}

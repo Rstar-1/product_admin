@@ -80,16 +80,6 @@ const sidebarmenu = [
         name: "Clients",
         route: "client",
       },
-      {
-        icon: "circle",
-        name: "Products",
-        route: "products",
-      },
-      {
-        icon: "circle",
-        name: "Teams",
-        route: "team",
-      },
     ],
   },
   {
@@ -106,8 +96,13 @@ const sidebarmenu = [
       },
       {
         icon: "circle",
-        name: "Brands",
-        route: "brands",
+        name: "Events",
+        route: "event",
+      },
+      {
+        icon: "circle",
+        name: "Teams",
+        route: "team",
       },
       {
         icon: "circle",
