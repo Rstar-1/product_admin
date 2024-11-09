@@ -22,7 +22,7 @@ const Edit = (props) => {
 
   // Redux State
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.gallerydata);
+  const { loading, error } = useSelector((state) => state.managementdata);
   // Redux State
 
   // Input State Management

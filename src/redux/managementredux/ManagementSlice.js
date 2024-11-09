@@ -15,6 +15,21 @@ export const showmanagement = createAsyncThunk(
   }
 );
 
+export const addmanagement = createAsyncThunk(
+  "management/addmanagement",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/managementadddata",
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
 export const paginationteammanagement = createAsyncThunk(
   "management/paginationteammanagement",
   async ({ offset, search }, { rejectWithValue }) => {
@@ -97,21 +112,6 @@ export const paginationeventmanagement = createAsyncThunk(
       const response = await axios.post(
         "http://localhost:8000/api/managementEventpaginationdata",
         { offset, search }
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  }
-);
-
-export const addmanagement = createAsyncThunk(
-  "management/addmanagement",
-  async (payload, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/api/managementadddata",
-        payload
       );
       return response.data;
     } catch (error) {
@@ -213,6 +213,23 @@ const managementSlice = createSlice({
     });
     // ------------------ Get Management Data ------------------ //
 
+    // ------------------ Add Management Data ------------------ //
+    builder.addCase(addmanagement.pending, (state) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(addmanagement.fulfilled, (state, action) => {
+      state.loading = false;
+      state.managementdata = [];
+      state.isSuccess = action.payload;
+    });
+    builder.addCase(addmanagement.rejected, (state, action) => {
+      state.loading = false;
+      state.managementdata = [];
+      state.error = action.error.message;
+    });
+    // ------------------ Add Management Data ------------------ //
+    
     // ------------------ Pagination Get Team Management Data ------------------ //
     builder.addCase(paginationteammanagement.pending, (state) => {
       state.loading = true;
@@ -326,23 +343,6 @@ const managementSlice = createSlice({
       state.error = action.error.message;
     });
     // ------------------ Pagination Get Event Management Data ------------------ //
-
-    // ------------------ Add Management Data ------------------ //
-    builder.addCase(addmanagement.pending, (state) => {
-      state.loading = true;
-      state.error = "";
-    });
-    builder.addCase(addmanagement.fulfilled, (state, action) => {
-      state.loading = false;
-      state.managementdata = [];
-      state.isSuccess = action.payload;
-    });
-    builder.addCase(addmanagement.rejected, (state, action) => {
-      state.loading = false;
-      state.managementdata = [];
-      state.error = action.error.message;
-    });
-    // ------------------ Add Management Data ------------------ //
 
     // ------------------ Single Management Data ------------------ //
     builder.addCase(singlemanagement.pending, (state) => {

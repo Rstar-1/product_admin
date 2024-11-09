@@ -16,8 +16,8 @@ import ReactPaginate from "react-paginate";
 import Search from "../../../../components/Search";
 import Nodata from "../../../../error/Nodata";
 import Banner from "../../../../components/Banner";
-import Edit from "./components/Edit";
-import Add from "./components/Add";
+import AddManagement from "./components/Add";
+import EditManagement from "./components/Edit";
 
 const Management = () => {
   // Add Edit Status Delete Popup
@@ -290,7 +290,7 @@ const Management = () => {
               />
             </div>
           </div>
-          <Add />
+          <AddManagement />
         </div>
       </div>
       <div
@@ -314,7 +314,7 @@ const Management = () => {
               />
             </div>
           </div>
-          <Edit editshow={editshow} />
+          <EditManagement editshow={editshow} />
         </div>
       </div>
       <Banner
