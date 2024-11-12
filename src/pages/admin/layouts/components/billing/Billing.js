@@ -109,7 +109,7 @@ const Billing = () => {
                 <p className="fsize12 textgray font-200">100</p>
               </div>
               <button className="border-0 cursor-pointer font-500 textwhite rounded-5 ptpx6 pbpx6 plpx25 prpx25 fsize13 bgprimary">
-                Pay
+                Details
               </button>
             </div>
           </div>

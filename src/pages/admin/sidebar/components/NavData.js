@@ -1,54 +1,3 @@
-// const sidebarmenu = [
-//   {
-//     icon: "grid",
-//     name: "Dashboard",
-//     route: "dashboard",
-//     accordian: "accordion-1",
-//     tabId: "cb1",
-//     dropdown: [],
-//   },
-//   {
-//     icon: "folder",
-//     name: "Management",
-//     route: "management",
-//     accordian: "accordion-2",
-//     tabId: "cb2",
-//     dropdown: [],
-//   },
-//   {
-//     icon: "file",
-//     name: "CMS",
-//     route: "cms",
-//     accordian: "accordion-4",
-//     tabId: "cb4",
-//     dropdown: [],
-//   },
-//   {
-//     icon: "book",
-//     name: "Bill Summary",
-//     route: "billing",
-//     accordian: "accordion-6",
-//     tabId: "cb6",
-//     dropdown: [],
-//   },
-//   {
-//     icon: "help-circle",
-//     name: "How it Works",
-//     route: "how-works",
-//     accordian: "accordion-3",
-//     tabId: "cb3",
-//     dropdown: [],
-//   },
-//   {
-//     icon: "search",
-//     name: "Seo",
-//     route: "seo",
-//     accordian: "accordion-5",
-//     tabId: "cb5",
-//     dropdown: [],
-//   },
-// ];
-
 const sidebarmenu = [
   {
     icon: "grid",
@@ -60,29 +9,10 @@ const sidebarmenu = [
   },
   {
     icon: "user",
-    name: "Blogs",
+    name: "MyAdmin",
     route: "",
     accordian: "accordion-2",
     tabId: "cb2",
-    dropdown: [
-      {
-        icon: "circle",
-        name: "Category",
-        route: "image-cms",
-      },
-      {
-        icon: "circle",
-        name: "Blogs",
-        route: "image-cms",
-      },
-    ],
-  },
-  {
-    icon: "settings",
-    name: "MyAdmin",
-    route: "",
-    accordian: "accordion-3",
-    tabId: "cb3",
     dropdown: [
       {
         icon: "circle",
@@ -122,12 +52,22 @@ const sidebarmenu = [
     ],
   },
   {
-    icon: "file",
-    name: "Products",
+    icon: "settings",
+    name: "Management",
     route: "",
-    accordian: "accordion-4",
-    tabId: "cb4",
+    accordian: "accordion-3",
+    tabId: "cb3",
     dropdown: [
+      {
+        icon: "circle",
+        name: "Category",
+        route: "image-cms",
+      },
+      {
+        icon: "circle",
+        name: "Blogs",
+        route: "image-cms",
+      },
       {
         icon: "circle",
         name: "Category",
@@ -141,20 +81,44 @@ const sidebarmenu = [
     ],
   },
   {
+    icon: "file",
+    name: "Products",
+    route: "",
+    accordian: "accordion-4",
+    tabId: "cb4",
+    dropdown: [
+      {
+        icon: "circle",
+        name: "Digital Card",
+        route: "image-cms",
+      },
+      {
+        icon: "circle",
+        name: "PDF",
+        route: "image-cms",
+      },
+    ],
+  },
+  {
     icon: "book",
-    name: "Elearning",
+    name: "Marcom",
     route: "",
     accordian: "accordion-5",
     tabId: "cb5",
     dropdown: [
       {
         icon: "circle",
-        name: "Category",
+        name: "Whatsapp",
         route: "image-cms",
       },
       {
         icon: "circle",
-        name: "Products",
+        name: "Email",
+        route: "image-cms",
+      },
+      {
+        icon: "circle",
+        name: "SMS",
         route: "image-cms",
       },
     ],

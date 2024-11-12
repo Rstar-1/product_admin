@@ -19,8 +19,8 @@ const MobileSidebar = () => {
                 <div className="">
                   {e.dropdown.length > 0 ? (
                     <>
-                      <div class="accordion my2">
-                        <div class="tab">
+                      <div className="accordion my2">
+                        <div className="tab">
                           <input
                             type="checkbox"
                             name={e.accordian}
@@ -47,7 +47,7 @@ const MobileSidebar = () => {
                               <FeatherIcon size="16" icon="chevron-right" />
                             </div>
                           </label>
-                          <div class="tab__content">
+                          <div className="tab__content">
                             <div className="grid grid-cols-1 prpx15 plpx10">
                               {e.dropdown.map((drop) => (
                                 <NavLink

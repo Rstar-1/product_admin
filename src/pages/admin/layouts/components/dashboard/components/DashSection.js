@@ -50,14 +50,14 @@ const DashSection = () => {
             <div className="w-60">
               <h2 className="fsize22 mtpx1 mbpx1 textwhite">Welcome Back</h2>
               <p className="fsize14 textwhite">Dashboard</p>
-              <div className="grid-cols-2 gap-8 mtpx16">
+              <div className="grid-cols-2 mtpx16">
                 <div>
-                  <p className="fsize18 font-600 textwhite">230 +</p>
-                  <p className="fsize12 textwhite">Dashboard</p>
+                  <p className="fsize18 font-600 textwhite">20 +</p>
+                  <p className="fsize12 textwhite">Website</p>
                 </div>
                 <div>
-                  <p className="fsize18 font-600 textwhite">230 +</p>
-                  <p className="fsize12 textwhite">Dashboard</p>
+                  <p className="fsize18 font-600 textwhite">23 +</p>
+                  <p className="fsize12 textwhite">App Design</p>
                 </div>
               </div>
             </div>
@@ -75,14 +75,14 @@ const DashSection = () => {
             <div className="w-60">
               <h2 className="fsize22 mtpx1 mbpx1 textwhite">Welcome Back</h2>
               <p className="fsize14 textwhite">Dashboard</p>
-              <div className="grid-cols-2 gap-8 mtpx16">
+              <div className="grid-cols-2 mtpx16">
                 <div>
                   <p className="fsize18 font-600 textwhite">230 +</p>
-                  <p className="fsize12 textwhite">Dashboard</p>
+                  <p className="fsize12 textwhite">Catelouge</p>
                 </div>
                 <div>
                   <p className="fsize18 font-600 textwhite">230 +</p>
-                  <p className="fsize12 textwhite">Dashboard</p>
+                  <p className="fsize12 textwhite">Digital Card</p>
                 </div>
               </div>
             </div>

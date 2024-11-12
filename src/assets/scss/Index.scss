@@ -435,22 +435,24 @@ p {
 
 /* ======================= Start-Button ======================= */
 .primarybtn {
-  background: transparent;
+  background: var(--primary) !important;
   border: 1px solid var(--primary2);
-  color: var(--primary2);
+  color: var(--white);
 }
 .primarybtn:hover {
   background: var(--primary);
   color: var(--white);
+  box-shadow: 0 1px 20px 1px var(--primary2) !important;
 }
 .secondarybtn {
-  background: transparent !important;
+  background: var(--secondary2) !important;
   border: 1px solid var(--secondary);
-  color: var(--secondary);
+  color: var(--white);
 }
 .secondarybtn:hover {
   background: var(--secondary);
   color: var(--white);
+  box-shadow: 0 1px 15px 1px var(--secondary2) !important;
 }
 .whitebtn {
   background: transparent !important;
@@ -734,10 +736,10 @@ input:focus-visible {
 /* ======================= Start-CMS ======================= */
 
 .section_wid {
-  min-width: 70% !important;
+  min-width: 65% !important;
 }
 .cms_wid {
-  width: 30% !important;
+  width: 35% !important;
 }
 .h_cms {
   height: 300px !important;

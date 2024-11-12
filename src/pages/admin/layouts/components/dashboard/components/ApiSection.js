@@ -129,20 +129,6 @@ const ApiSection = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center">
-              <div className="flex items-center justify-center social-icon rounded-full bgsuccess">
-                <FeatherIcon
-                  icon="phone"
-                  size={12}
-                  className="flex textwhite"
-                />
-              </div>
-              <div className="w-90">
-                <p className="fsize13 font-400 textgray mlpx6">
-                  +91 9807654321
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

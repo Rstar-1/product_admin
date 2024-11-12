@@ -28,15 +28,15 @@ const Sidebar = () => {
                 <div className="">
                   {e.dropdown.length > 0 ? (
                     <>
-                      <div class="accordion">
-                        <div class="tab">
+                      <div className="accordion">
+                        <div className="tab">
                           <input
                             type="checkbox"
                             name={e.accordian}
                             id={e.tabId}
                           />
                           <label
-                            for={e.tabId}
+                            htmlFor={e.tabId}
                             className="py10 px12 cursor-pointer flex justify-between items-center textforth font-300"
                           >
                             <div className="flex items-center gap-4">
@@ -56,7 +56,7 @@ const Sidebar = () => {
                               <FeatherIcon size="16" icon="chevron-right" />
                             </div>
                           </label>
-                          <div class="tab__content">
+                          <div className="tab__content">
                             <div className="grid grid-cols-1 px2">
                               {e.dropdown.map((drop) => (
                                 <NavLink
