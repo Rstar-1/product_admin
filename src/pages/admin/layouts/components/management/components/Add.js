@@ -178,14 +178,34 @@ const Add = () => {
   }
   // Loading and Error
 
+  // Add Popup
+    const getBannerProps = () => {
+      if (window.location.pathname.includes("team")) {
+        return { Title: "Teams", Description: "Teams" };
+      } else if (window.location.pathname.includes("service")) {
+        return { Title: "Service", Description: "Service" };
+      } else if (window.location.pathname.includes("gallery")) {
+        return { Title: "Gallery", Description: "Gallery" };
+      } else if (window.location.pathname.includes("client")) {
+        return { Title: "Clients", Description: "Clients" };
+      } else if (window.location.pathname.includes("faq")) {
+        return { Title: "Faq", Description: "Faq" };
+      } else if (window.location.pathname.includes("event")) {
+        return { Title: "Events", Description: "Events" };
+      } else {
+        return { Title: "Default Page", Description: "Default" };
+      }
+    };
+    const bannerProps = getBannerProps();
+  // Add Popup
+
   return (
     <div className="p20 side-scroll">
       {success ? (
         <div className="fixed flex justify-center items-center bg-glass top-0 left-0 h-100 z-999 w-full">
           <AddSuccess
-            title="Add Gallery"
-            description="placeholder text commonly used to demonstrate the visual form of a
-            document or a typeface content."
+            title={bannerProps.Title}
+            description={bannerProps.Description}
           />
         </div>
       ) : null}

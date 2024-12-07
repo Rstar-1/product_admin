@@ -45,12 +45,42 @@ export const paginationteammanagement = createAsyncThunk(
   }
 );
 
+export const paginationnotteammanagement = createAsyncThunk(
+  "management/paginationnotteammanagement",
+  async ({ offset, search }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/managementNotTeampaginationdata",
+        { offset, search }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
 export const paginationservicemanagement = createAsyncThunk(
   "management/paginationservicemanagement",
   async ({ offset, search }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         "http://localhost:8000/api/managementServicepaginationdata",
+        { offset, search }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const paginationnotservicemanagement = createAsyncThunk(
+  "management/paginationnotservicemanagement",
+  async ({ offset, search }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/managementNotServicepaginationdata",
         { offset, search }
       );
       return response.data;
@@ -75,12 +105,42 @@ export const paginationgallerymanagement = createAsyncThunk(
   }
 );
 
+export const paginationnotgallerymanagement = createAsyncThunk(
+  "management/paginationnotgallerymanagement",
+  async ({ offset, search }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/managementNotGallerypaginationdata",
+        { offset, search }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
 export const paginationclientmanagement = createAsyncThunk(
   "management/paginationclientmanagement",
   async ({ offset, search }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         "http://localhost:8000/api/managementClientpaginationdata",
+        { offset, search }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const paginationnotclientmanagement = createAsyncThunk(
+  "management/paginationnotclientmanagement",
+  async ({ offset, search }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/managementNotClientpaginationdata",
         { offset, search }
       );
       return response.data;
@@ -105,17 +165,57 @@ export const paginationfaqmanagement = createAsyncThunk(
   }
 );
 
-export const paginationeventmanagement = createAsyncThunk(
-  "management/paginationeventmanagement",
+export const paginationnotfaqmanagement = createAsyncThunk(
+  "management/paginationnotfaqmanagement",
   async ({ offset, search }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/managementEventpaginationdata",
+        "http://localhost:8000/api/managementNotFaqpaginationdata",
         { offset, search }
       );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const paginationeventmanagement = createAsyncThunk(
+  "management/paginationeventmanagement",
+  async ({ offset, search, pagination }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/managementEventpaginationdata",
+        { offset, search, pagination }
+      );
+      return response.data;
+    } catch (error) {
+      // Handle server-side errors and fallback for other errors
+      return rejectWithValue(
+        error.response?.data || {
+          message: error.message || "An unknown error occurred",
+        }
+      );
+    }
+  }
+);
+
+export const paginationnoteventmanagement = createAsyncThunk(
+  "management/paginationnoteventmanagement",
+  async ({ offset, search, pagination }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/managementNotEventpaginationdata",
+        { offset, search, pagination }
+      );
+      return response.data;
+    } catch (error) {
+      // Handle server-side errors and fallback for other errors
+      return rejectWithValue(
+        error.response?.data || {
+          message: error.message || "An unknown error occurred",
+        }
+      );
     }
   }
 );
@@ -229,7 +329,7 @@ const managementSlice = createSlice({
       state.error = action.error.message;
     });
     // ------------------ Add Management Data ------------------ //
-    
+
     // ------------------ Pagination Get Team Management Data ------------------ //
     builder.addCase(paginationteammanagement.pending, (state) => {
       state.loading = true;
@@ -243,6 +343,23 @@ const managementSlice = createSlice({
       state.totalCount = action.payload.totalCount;
     });
     builder.addCase(paginationteammanagement.rejected, (state, action) => {
+      state.loading = false;
+      state.managementdata = [];
+      state.error = action.error.message;
+    });
+    // ------------------ Pagination Get Team Management Data ------------------ //
+    builder.addCase(paginationnotteammanagement.pending, (state) => {
+      state.loading = true;
+      state.managementdata = [];
+      state.error = "";
+    });
+    builder.addCase(paginationnotteammanagement.fulfilled, (state, action) => {
+      state.loading = false;
+      state.managementdata = action.payload;
+      state.error = "";
+      state.totalCount = action.payload.totalCount;
+    });
+    builder.addCase(paginationnotteammanagement.rejected, (state, action) => {
       state.loading = false;
       state.managementdata = [];
       state.error = action.error.message;
@@ -267,6 +384,29 @@ const managementSlice = createSlice({
       state.error = action.error.message;
     });
     // ------------------ Pagination Get Service Management Data ------------------ //
+    builder.addCase(paginationnotservicemanagement.pending, (state) => {
+      state.loading = true;
+      state.managementdata = [];
+      state.error = "";
+    });
+    builder.addCase(
+      paginationnotservicemanagement.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.managementdata = action.payload;
+        state.error = "";
+        state.totalCount = action.payload.totalCount;
+      }
+    );
+    builder.addCase(
+      paginationnotservicemanagement.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.managementdata = [];
+        state.error = action.error.message;
+      }
+    );
+    // ------------------ Pagination Get Service Management Data ------------------ //
 
     // ------------------ Pagination Get Gallery Management Data ------------------ //
     builder.addCase(paginationgallerymanagement.pending, (state) => {
@@ -285,6 +425,29 @@ const managementSlice = createSlice({
       state.managementdata = [];
       state.error = action.error.message;
     });
+    // ------------------ Pagination Get Gallery Management Data ------------------ //
+    builder.addCase(paginationnotgallerymanagement.pending, (state) => {
+      state.loading = true;
+      state.managementdata = [];
+      state.error = "";
+    });
+    builder.addCase(
+      paginationnotgallerymanagement.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.managementdata = action.payload;
+        state.error = "";
+        state.totalCount = action.payload.totalCount;
+      }
+    );
+    builder.addCase(
+      paginationnotgallerymanagement.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.managementdata = [];
+        state.error = action.error.message;
+      }
+    );
     // ------------------ Pagination Get Gallery Management Data ------------------ //
 
     // ------------------ Pagination Get Client Management Data ------------------ //
@@ -305,6 +468,26 @@ const managementSlice = createSlice({
       state.error = action.error.message;
     });
     // ------------------ Pagination Get Client Management Data ------------------ //
+    builder.addCase(paginationnotclientmanagement.pending, (state) => {
+      state.loading = true;
+      state.managementdata = [];
+      state.error = "";
+    });
+    builder.addCase(
+      paginationnotclientmanagement.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.managementdata = action.payload;
+        state.error = "";
+        state.totalCount = action.payload.totalCount;
+      }
+    );
+    builder.addCase(paginationnotclientmanagement.rejected, (state, action) => {
+      state.loading = false;
+      state.managementdata = [];
+      state.error = action.error.message;
+    });
+    // ------------------ Pagination Get Gallery Management Data ------------------ //
 
     // ------------------ Pagination Get Faq Management Data ------------------ //
     builder.addCase(paginationfaqmanagement.pending, (state) => {
@@ -319,6 +502,23 @@ const managementSlice = createSlice({
       state.totalCount = action.payload.totalCount;
     });
     builder.addCase(paginationfaqmanagement.rejected, (state, action) => {
+      state.loading = false;
+      state.managementdata = [];
+      state.error = action.error.message;
+    });
+    // ------------------ Pagination Get Faq Management Data ------------------ //
+    builder.addCase(paginationnotfaqmanagement.pending, (state) => {
+      state.loading = true;
+      state.managementdata = [];
+      state.error = "";
+    });
+    builder.addCase(paginationnotfaqmanagement.fulfilled, (state, action) => {
+      state.loading = false;
+      state.managementdata = action.payload;
+      state.error = "";
+      state.totalCount = action.payload.totalCount;
+    });
+    builder.addCase(paginationnotfaqmanagement.rejected, (state, action) => {
       state.loading = false;
       state.managementdata = [];
       state.error = action.error.message;
@@ -343,6 +543,23 @@ const managementSlice = createSlice({
       state.error = action.error.message;
     });
     // ------------------ Pagination Get Event Management Data ------------------ //
+    builder.addCase(paginationnoteventmanagement.pending, (state) => {
+      state.loading = true;
+      state.managementdata = [];
+      state.error = "";
+    });
+    builder.addCase(paginationnoteventmanagement.fulfilled, (state, action) => {
+      state.loading = false;
+      state.managementdata = action.payload;
+      state.error = "";
+      state.totalCount = action.payload.totalCount;
+    });
+    builder.addCase(paginationnoteventmanagement.rejected, (state, action) => {
+      state.loading = false;
+      state.managementdata = [];
+      state.error = action.error.message;
+    });
+    // ------------------ Pagination Get Faq Management Data ------------------ //
 
     // ------------------ Single Management Data ------------------ //
     builder.addCase(singlemanagement.pending, (state) => {

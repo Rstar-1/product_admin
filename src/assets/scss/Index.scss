@@ -21,6 +21,7 @@
 }
 .dark-mode {
   --primary: #74c2a8 !important;
+  --primary2: #74c2a8 !important;
   --secondary: #9a9bcc !important;
   --tertiary: #171718 !important;
   --forth: #fff !important;
@@ -222,6 +223,7 @@
   font-display: swap;
 }
 p,
+a,
 label,
 small,
 input,
@@ -237,12 +239,10 @@ h4,
 h5,
 h6,
 span,
-li,
-a {
+li {
   font-family: "poppins-semibold" !important;
 }
 p {
-  letter-spacing: 1px;
   line-height: 24px !important;
   @media (max-width: 640px) {
     line-height: 20px !important;
@@ -645,6 +645,43 @@ input:focus-visible {
     object-fit: contain !important;
   }
 }
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 16px;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.tog_slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s;
+}
+.tog_slider::before {
+  content: "";
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  left: 3px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+.toggle-switch input:checked + .tog_slider {
+  background-color: var(--success);
+}
+.toggle-switch input:checked + .tog_slider::before {
+  transform: translateX(14px);
+}
 /* ======================= End-Table ======================= */
 
 /* ======================= Start-Login ======================= */
@@ -709,6 +746,9 @@ input:focus-visible {
   @media (max-width: 640px) {
     height: 60px !important;
   }
+}
+.project-img {
+  height: 80px !important;
 }
 
 /* ======================= End-dashboard ======================= */

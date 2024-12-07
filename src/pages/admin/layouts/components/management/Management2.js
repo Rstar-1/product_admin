@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import FeatherIcon from "feather-icons-react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  paginationteammanagement,
-  paginationservicemanagement,
-  paginationgallerymanagement,
-  paginationclientmanagement,
-  paginationfaqmanagement,
-  paginationeventmanagement,
   deletemanagement,
   statusmanagement,
+  paginationnotteammanagement,
+  paginationnotservicemanagement,
+  paginationnotgallerymanagement,
+  paginationnotclientmanagement,
+  paginationnotfaqmanagement,
+  paginationnoteventmanagement,
 } from "../../../../../redux/managementredux/ManagementSlice";
 import { showapidata } from "../../../../../redux/apiredux/ApiSlice";
 import ReactPaginate from "react-paginate";
@@ -30,32 +29,32 @@ const Management = () => {
   // Redux State
   const dispatch = useDispatch();
   const getdata = useSelector((state) => {
-    if (window.location.pathname.includes("team")) {
-      return state.managementdata.managementdata.managementteamstore;
-    } else if (window.location.pathname.includes("service")) {
-      return state.managementdata.managementdata.managementservicestore;
-    } else if (window.location.pathname.includes("gallery")) {
-      return state.managementdata.managementdata.managementgallerystore;
-    } else if (window.location.pathname.includes("client")) {
-      return state.managementdata.managementdata.managementclientstore;
-    } else if (window.location.pathname.includes("faq")) {
-      return state.managementdata.managementdata.managementfaqstore;
-    } else if (window.location.pathname.includes("event")) {
-      return state.managementdata.managementdata.managementeventstore;
+    if (window.location.pathname.includes("unpublished_team")) {
+      return state.managementdata.managementdata.managementnotteamstore;
+    } else if (window.location.pathname.includes("unpublished_service")) {
+      return state.managementdata.managementdata.managementnotservicestore;
+    } else if (window.location.pathname.includes("unpublished_gallery")) {
+      return state.managementdata.managementdata.managementnotgallerystore;
+    } else if (window.location.pathname.includes("unpublished_client")) {
+      return state.managementdata.managementdata.managementnotclientstore;
+    } else if (window.location.pathname.includes("unpublished_faq")) {
+      return state.managementdata.managementdata.managementnotfaqstore;
+    } else if (window.location.pathname.includes("unpublished_event")) {
+      return state.managementdata.managementdata.managementnoteventstore;
     }
   });
   const totalCount = useSelector((state) => {
-    if (window.location.pathname.includes("team")) {
+    if (window.location.pathname.includes("unpublished_team")) {
       return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("service")) {
+    } else if (window.location.pathname.includes("unpublished_service")) {
       return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("gallery")) {
+    } else if (window.location.pathname.includes("unpublished_gallery")) {
       return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("client")) {
+    } else if (window.location.pathname.includes("unpublished_client")) {
       return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("faq")) {
+    } else if (window.location.pathname.includes("unpublished_faq")) {
       return state.managementdata.totalCount;
-    } else if (window.location.pathname.includes("event")) {
+    } else if (window.location.pathname.includes("unpublished_event")) {
       return state.managementdata.totalCount;
     }
   });
@@ -79,49 +78,49 @@ const Management = () => {
   // API useEffect
   useEffect(() => {
     dispatch(showapidata());
-    if (window.location.pathname.includes("team")) {
+    if (window.location.pathname.includes("unpublished_team")) {
       dispatch(
-        paginationteammanagement({
+        paginationnotteammanagement({
           offset: currentpage * 6,
           search,
           pagination: paginations,
         })
       );
-    } else if (window.location.pathname.includes("service")) {
+    } else if (window.location.pathname.includes("unpublished_service")) {
       dispatch(
-        paginationservicemanagement({
+        paginationnotservicemanagement({
           offset: currentpage * 6,
           search,
           pagination: paginations,
         })
       );
-    } else if (window.location.pathname.includes("gallery")) {
+    } else if (window.location.pathname.includes("unpublished_gallery")) {
       dispatch(
-        paginationgallerymanagement({
+        paginationnotgallerymanagement({
           offset: currentpage * 6,
           search,
           pagination: paginations,
         })
       );
-    } else if (window.location.pathname.includes("client")) {
+    } else if (window.location.pathname.includes("unpublished_client")) {
       dispatch(
-        paginationclientmanagement({
+        paginationnotclientmanagement({
           offset: currentpage * 6,
           search,
           pagination: paginations,
         })
       );
-    } else if (window.location.pathname.includes("faq")) {
+    } else if (window.location.pathname.includes("unpublished_faq")) {
       dispatch(
-        paginationfaqmanagement({
+        paginationnotfaqmanagement({
           offset: currentpage * 6,
           search,
           pagination: paginations,
         })
       );
-    } else if (window.location.pathname.includes("event")) {
+    } else if (window.location.pathname.includes("unpublished_event")) {
       dispatch(
-        paginationeventmanagement({
+        paginationnoteventmanagement({
           offset: currentpage * 6,
           search,
           pagination: paginations,
@@ -136,62 +135,62 @@ const Management = () => {
     try {
       let resultAction;
 
-      if (window.location.pathname.includes("team")) {
+      if (window.location.pathname.includes("unpublished_team")) {
         resultAction = await dispatch(deletemanagement(id));
         if (deletemanagement.fulfilled.match(resultAction)) {
           alert("Deleted successfully");
           dispatch(
-            paginationteammanagement({ offset: currentpage * 6, search })
+            paginationnotteammanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to delete item");
         }
-      } else if (window.location.pathname.includes("service")) {
+      } else if (window.location.pathname.includes("unpublished_service")) {
         resultAction = await dispatch(deletemanagement(id));
         if (deletemanagement.fulfilled.match(resultAction)) {
           alert("Deleted successfully");
           dispatch(
-            paginationservicemanagement({ offset: currentpage * 6, search })
+            paginationnotservicemanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to delete item");
         }
-      } else if (window.location.pathname.includes("gallery")) {
+      } else if (window.location.pathname.includes("unpublished_gallery")) {
         resultAction = await dispatch(deletemanagement(id));
         if (deletemanagement.fulfilled.match(resultAction)) {
           alert("Deleted successfully");
           dispatch(
-            paginationgallerymanagement({ offset: currentpage * 6, search })
+            paginationnotgallerymanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to delete item");
         }
-      } else if (window.location.pathname.includes("client")) {
+      } else if (window.location.pathname.includes("unpublished_client")) {
         resultAction = await dispatch(deletemanagement(id));
         if (deletemanagement.fulfilled.match(resultAction)) {
           alert("Deleted successfully");
           dispatch(
-            paginationclientmanagement({ offset: currentpage * 6, search })
+            paginationnotclientmanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to delete item");
         }
-      } else if (window.location.pathname.includes("faq")) {
+      } else if (window.location.pathname.includes("unpublished_faq")) {
         resultAction = await dispatch(deletemanagement(id));
         if (deletemanagement.fulfilled.match(resultAction)) {
           alert("Deleted successfully");
           dispatch(
-            paginationfaqmanagement({ offset: currentpage * 6, search })
+            paginationnotfaqmanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to delete item");
         }
-      } else if (window.location.pathname.includes("event")) {
+      } else if (window.location.pathname.includes("unpublished_event")) {
         resultAction = await dispatch(deletemanagement(id));
         if (deletemanagement.fulfilled.match(resultAction)) {
           alert("Deleted successfully");
           dispatch(
-            paginationeventmanagement({ offset: currentpage * 6, search })
+            paginationnoteventmanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to delete item");
@@ -212,62 +211,62 @@ const Management = () => {
 
       let resultAction;
 
-      if (window.location.pathname.includes("team")) {
+      if (window.location.pathname.includes("unpublished_team")) {
         resultAction = await dispatch(statusmanagement({ id, data }));
         if (statusmanagement.fulfilled.match(resultAction)) {
           // alert("Published successfully");
           dispatch(
-            paginationteammanagement({ offset: currentpage * 6, search })
+            paginationnotteammanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to publish");
         }
-      } else if (window.location.pathname.includes("service")) {
+      } else if (window.location.pathname.includes("unpublished_service")) {
         resultAction = await dispatch(statusmanagement({ id, data }));
         if (statusmanagement.fulfilled.match(resultAction)) {
           // alert("Published successfully");
           dispatch(
-            paginationservicemanagement({ offset: currentpage * 6, search })
+            paginationnotservicemanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to publish");
         }
-      } else if (window.location.pathname.includes("gallery")) {
+      } else if (window.location.pathname.includes("unpublished_gallery")) {
         resultAction = await dispatch(statusmanagement({ id, data }));
         if (statusmanagement.fulfilled.match(resultAction)) {
           // alert("Published successfully");
           dispatch(
-            paginationgallerymanagement({ offset: currentpage * 6, search })
+            paginationnotgallerymanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to publish");
         }
-      } else if (window.location.pathname.includes("client")) {
+      } else if (window.location.pathname.includes("unpublished_client")) {
         resultAction = await dispatch(statusmanagement({ id, data }));
         if (statusmanagement.fulfilled.match(resultAction)) {
           // alert("Published successfully");
           dispatch(
-            paginationclientmanagement({ offset: currentpage * 6, search })
+            paginationnotclientmanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to publish");
         }
-      } else if (window.location.pathname.includes("faq")) {
+      } else if (window.location.pathname.includes("unpublished_faq")) {
         resultAction = await dispatch(statusmanagement({ id, data }));
         if (statusmanagement.fulfilled.match(resultAction)) {
           // alert("Published successfully");
           dispatch(
-            paginationfaqmanagement({ offset: currentpage * 6, search })
+            paginationnotfaqmanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to publish");
         }
-      } else if (window.location.pathname.includes("event")) {
+      } else if (window.location.pathname.includes("unpublished_event")) {
         resultAction = await dispatch(statusmanagement({ id, data }));
         if (statusmanagement.fulfilled.match(resultAction)) {
           // alert("Published successfully");
           dispatch(
-            paginationeventmanagement({ offset: currentpage * 6, search })
+            paginationnoteventmanagement({ offset: currentpage * 6, search })
           );
         } else {
           alert("Failed to publish");
@@ -279,40 +278,19 @@ const Management = () => {
   };
   // Status
 
-  // Navigate
-  const navigate = useNavigate();
-  const handleStatus = () => {
-    if (window.location.pathname.includes("team")) {
-      navigate("/unpublished_team");
-    } else if (window.location.pathname.includes("service")) {
-      navigate("/unpublished_service");
-    } else if (window.location.pathname.includes("team")) {
-      navigate("/unpublished_gallery");
-    } else if (window.location.pathname.includes("gallery")) {
-      navigate("/unpublished_gallery");
-    } else if (window.location.pathname.includes("client")) {
-      navigate("/unpublished_client");
-    } else if (window.location.pathname.includes("faq")) {
-      navigate("/unpublished_faq");
-    } else if (window.location.pathname.includes("event")) {
-      navigate("/unpublished_event");
-    }
-  };
-  // Navigate
-
   // Banner
   const getBannerProps = () => {
-    if (window.location.pathname.includes("team")) {
+    if (window.location.pathname.includes("unpublished_team")) {
       return { Title: "Teams", Original: "Teams" };
-    } else if (window.location.pathname.includes("service")) {
+    } else if (window.location.pathname.includes("unpublished_service")) {
       return { Title: "Service", Original: "Service" };
-    } else if (window.location.pathname.includes("gallery")) {
+    } else if (window.location.pathname.includes("unpublished_gallery")) {
       return { Title: "Gallery", Original: "Gallery" };
-    } else if (window.location.pathname.includes("client")) {
+    } else if (window.location.pathname.includes("unpublished_client")) {
       return { Title: "Clients", Original: "Clients" };
-    } else if (window.location.pathname.includes("faq")) {
+    } else if (window.location.pathname.includes("unpublished_faq")) {
       return { Title: "Faq", Original: "Faq" };
-    } else if (window.location.pathname.includes("event")) {
+    } else if (window.location.pathname.includes("unpublished_event")) {
       return { Title: "Events", Original: "Events" };
     } else {
       return { Title: "Default Page", Original: "Default" };
@@ -377,25 +355,16 @@ const Management = () => {
         Original={bannerProps.Original}
       />
       <div className="mtpx20 flex items-center justify-between">
-        <div className="w-60 md-w-60 sm-w-40">
+        <div className="w-60 md-w-70 sm-w-60">
           <Search search={search} change={handleSearchChange} />
         </div>
-        <div className="flex items-center gap-8">
-          <button
-            className="primarybtn rounded-5 px16 py8 sm-py6 fsize14 cursor-pointer"
-            onClick={() => setaddshow(true)}
-          >
-            Add
-          </button>
-          <button
-            className="secondarybtn rounded-5 p12 sm-p10 fsize14 cursor-pointer"
-            onClick={() => handleStatus()}
-          >
-            <FeatherIcon icon="trash-2" className="flex" size={16} />
-          </button>
-        </div>
+        <button
+          className="primarybtn rounded-5 px16 py8 fsize14 cursor-pointer"
+          onClick={() => setaddshow(true)}
+        >
+          Add
+        </button>
       </div>
-
       {/* ----------------- Desktop ------------------- */}
       <div className="border-ec sm-border-none rounded-5 px16 py18 sm-py1 sm-px1 sm-rounded-5 mtpx20 md-mtpx16 sm-mtpx14 sm-hidden">
         <div className="table-w rounded-5">

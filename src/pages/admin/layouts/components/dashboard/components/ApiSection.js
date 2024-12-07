@@ -4,7 +4,7 @@ import FeatherIcon from "feather-icons-react";
 const ApiSection = () => {
   return (
     <div className="">
-      <div className="flex justify-between bgwhite items-center px16 py10 rounded-5 d-shadow">
+      <div className="flex justify-between bgwhite items-center px16 py10 rounded-5 b-shadow">
         <p className="fsize14 textprimary font-600">Automate API</p>
         <FeatherIcon
           icon="chevron-right"
@@ -12,7 +12,7 @@ const ApiSection = () => {
           size={20}
         />
       </div>
-      <div className="mtpx14 d-shadow w-full bgwhite rounded-5">
+      <div className="mtpx14 b-shadow w-full bgwhite rounded-5">
         <div className="px16 ptpx13 pbpx16">
           <h4 className="fsize15 textprimary font-500 mtpx1 mbpx1">
             API Information
@@ -48,7 +48,7 @@ const ApiSection = () => {
         </div>
       </div>
       <div className="mtpx14 grid-cols-2 gap-12 mtpx12">
-        <div className="rounded-5 d-shadow w-full bgwhite">
+        <div className="rounded-5 b-shadow w-full bgwhite">
           <div className="py20">
             <h5 className="fsize32 textsuccess mtpx1 mbpx1 text-center">12</h5>
             <h6 className="fsize15 textgray leading font-600 mtpx1 mbpx1 text-center">
@@ -57,7 +57,7 @@ const ApiSection = () => {
             <p className="text-center fsize11 textgray">Leads of Month</p>
           </div>
         </div>
-        <div className="rounded-5 d-shadow w-full bgwhite">
+        <div className="rounded-5 b-shadow w-full bgwhite">
           <div className="py20">
             <h5 className="fsize32 textsuccess mtpx1 mbpx1 text-center">80</h5>
             <h6 className="fsize15 textgray leading font-600 mtpx1 mbpx1 text-center">
@@ -67,7 +67,7 @@ const ApiSection = () => {
           </div>
         </div>
       </div>
-      <div className="mtpx14 d-shadow w-full bgwhite rounded-5">
+      <div className="mtpx14 b-shadow w-full bgwhite rounded-5">
         <div className="px16 ptpx13 pbpx16">
           <h4 className="fsize15 textprimary font-500 mtpx1 mbpx1">
             Social Media

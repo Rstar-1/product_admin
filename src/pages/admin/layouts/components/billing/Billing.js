@@ -108,7 +108,7 @@ const Billing = () => {
                 </h5>
                 <p className="fsize12 textgray font-200">100</p>
               </div>
-              <button className="border-0 cursor-pointer font-500 textwhite rounded-5 ptpx6 pbpx6 plpx25 prpx25 fsize13 bgprimary">
+              <button className="border-0 cursor-pointer font-500 textwhite rounded-5 ptpx6 pbpx6 plpx15 prpx15 fsize13 bgprimary">
                 Details
               </button>
             </div>

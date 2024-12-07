@@ -16,9 +16,11 @@ import TextCms from "./pages/admin/layouts/components/textcms/TextCms";
 import ImageCms from "./pages/admin/layouts/components/imagecms/ImageCms";
 import Seo from "./pages/admin/layouts/components/seo/Seo";
 import Management from "./pages/admin/layouts/components/management/Management";
+import Management2 from "./pages/admin/layouts/components/management/Management2";
 import Billing from "./pages/admin/layouts/components/billing/Billing";
 import Review from "./pages/admin/layouts/components/review/Review";
 import CMS from "./pages/admin/layouts/components/cms/CMS";
+import Projects from "./pages/admin/layouts/components/projects/Projects";
 
 const App = () => {
   const location = useLocation();
@@ -68,15 +70,22 @@ const App = () => {
             {/* ======================= Start-Login ======================= */}
             {/* ======================= Start-Pages ======================= */}
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/text-cms" element={<TextCms />} />
             <Route path="/image-cms" element={<ImageCms />} />
+            <Route path="/review" element={<Review />} />
             <Route path="/gallery" element={<Management />} />
             <Route path="/service" element={<Management />} />
             <Route path="/client" element={<Management />} />
             <Route path="/event" element={<Management />} />
             <Route path="/team" element={<Management />} />
-            <Route path="/review" element={<Review />} />
             <Route path="/faq" element={<Management />} />
+            <Route path="unpublished_gallery" element={<Management2 />} />
+            <Route path="unpublished_service" element={<Management2 />} />
+            <Route path="unpublished_client" element={<Management2 />} />
+            <Route path="unpublished_event" element={<Management2 />} />
+            <Route path="unpublished_team" element={<Management2 />} />
+            <Route path="unpublished_faq" element={<Management2 />} />
             <Route path="/cms" element={<CMS />} />
             <Route path="/billing" element={<Billing />} />
             <Route path="/seo" element={<Seo />} />

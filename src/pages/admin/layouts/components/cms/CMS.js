@@ -4,13 +4,13 @@ import Section from "./components/Section"
 
 const CMS = () => {
   return (
-    <div className="flex mtpx16 w-full gap-12">
-      <div className="section_wid">
+    <div className="cust-scroll py12">
+      <div className="w-full">
         <Section />
       </div>
-      <div className="cms_wid">
+      {/* <div className="cms_wid">
         <Cmsdata />
-      </div>
+      </div> */}
     </div>
   );
 };

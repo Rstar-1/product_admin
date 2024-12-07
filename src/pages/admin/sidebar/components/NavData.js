@@ -89,12 +89,17 @@ const sidebarmenu = [
     dropdown: [
       {
         icon: "circle",
-        name: "Digital Card",
-        route: "image-cms",
+        name: "Catelouge",
+        route: "cms",
       },
       {
         icon: "circle",
-        name: "PDF",
+        name: "Visiting Card",
+        route: "cms",
+      },
+      {
+        icon: "circle",
+        name: "Digital Card",
         route: "image-cms",
       },
     ],
@@ -129,6 +134,25 @@ const sidebarmenu = [
     route: "cms",
     accordian: "accordion-5",
     tabId: "cb6",
+    dropdown: [
+      {
+        icon: "circle",
+        name: "Text CMS",
+        route: "text-cms",
+      },
+      {
+        icon: "circle",
+        name: "Image CMS",
+        route: "image-cms",
+      },
+    ],
+  },
+  {
+    icon: "book",
+    name: "Projects",
+    route: "projects",
+    accordian: "accordion-5",
+    tabId: "cb7",
     dropdown: [],
   },
   {
@@ -136,7 +160,7 @@ const sidebarmenu = [
     name: "Billing",
     route: "billing",
     accordian: "accordion-5",
-    tabId: "cb7",
+    tabId: "cb8",
     dropdown: [],
   },
   {
@@ -144,7 +168,7 @@ const sidebarmenu = [
     name: "Seo",
     route: "seo",
     accordian: "accordion-5",
-    tabId: "cb8",
+    tabId: "cb9",
     dropdown: [],
   },
 ];
